@@ -5,6 +5,7 @@
   <title>Panditan Di Hatti Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Secure admin portal for Panditan Di Hatti">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link rel="preconnect" href="https://unpkg.com">
   <style>
     :root {
@@ -157,6 +158,12 @@
       <p>Enter the admin password to access the dashboard</p>
       
       <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email..."
+               autocomplete="email" required />
+      </div>
+      
+      <div class="input-group">
         <label for="admin-pass">Password</label>
         <div class="password-container">
           <input type="password" id="admin-pass" placeholder="Enter password..." 
@@ -208,11 +215,12 @@
     }
     
     function checkPass() {
+      const email = document.getElementById('email').value.trim();
       const password = document.getElementById('admin-pass').value.trim();
       const loginBtn = document.getElementById('login-btn');
       
-      if (!password) {
-        showMessage('Please enter a password');
+      if (!email || !password) {
+        showMessage(email ? 'Please enter a password' : 'Please enter your email');
         return;
       }
       
@@ -234,6 +242,17 @@
       document.getElementById('login-box').classList.add('hidden');
       document.getElementById('cms-container').classList.remove('hidden');
       
+      // Initialize Netlify Identity
+      if (window.netlifyIdentity) {
+        netlifyIdentity.on('init', user => {
+          if (!user) {
+            netlifyIdentity.on('login', () => {
+              window.location.href = '/admin/';
+            });
+          }
+        });
+      }
+
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js';
       script.onload = () => {
@@ -264,7 +283,7 @@
           document.getElementById('admin-pass').value = '';
         }, 30000); // 30-second timeout
       } else {
-        showMessage(`Incorrect password. ${remainingAttempts > 0 ? `${remainingAttempts} attempts remaining.` : 'Last attempt.'}`);
+        showMessage(`Invalid email or password. ${remainingAttempts > 0 ? `${remainingAttempts} attempts remaining.` : 'Last attempt.'}`);
       }
       
       loginBtn.textContent = 'Login';
