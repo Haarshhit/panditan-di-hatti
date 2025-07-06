@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Panditan Di Hatti Admin</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.css" />
-  </head>
-  <body>
-    <script>
-      // This prevents automatic login popup and manually initializes CMS
-      window.CMS_MANUAL_INIT = true;
-      CMS.init();
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Panditan Di Hatti Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Panditan Di Hatti Admin Dashboard</h1>
+
+  <script>
+    window.CMS_MANUAL_INIT = true;
+
+    async function loadConfigAndInitCMS() {
+      const response = await fetch('/config.yml');
+      const yamlText = await response.text();
+
+      const config = window.jsyaml.load(yamlText);
+      CMS.init({ config });
+    }
+
+    loadConfigAndInitCMS();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+</body>
 </html>
