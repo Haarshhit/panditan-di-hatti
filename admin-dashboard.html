@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panditan Di Hatti Admin Dashboard</title>
+  <meta name="description" content="Admin Portal - Panditan Di Hatti" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="/images/LOGO.png"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #fff0e5, #ffe8d6);
+      color: #333;
+      padding: 40px 20px;
+      text-align: center;
+      animation: fadeIn 1s ease-in;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #a83232;
+      animation: popIn 0.6s ease-out;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: slideUp 0.5s ease forwards;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #d4145a;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #fff;
+      background: #e05260;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .card a:hover {
+      background: #c13b50;
+    }
+
+    .cms-btn {
+      margin-top: 50px;
+      display: inline-block;
+      background: #3c40c6;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .cms-btn:hover {
+      background: #2428b6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🍬 Admin Dashboard - Panditan Di Hatti</h1>
+
+  <div class="dashboard">
+    <div class="card">
+      <h2>Edit Banner</h2>
+      <a href="/admin/#/collections/settings/entries/banner">Edit</a>
+    </div>
+    <div class="card">
+      <h2>Edit About Us</h2>
+      <a href="/admin/#/collections/settings/entries/about">Edit</a>
+    </div>
+    <div class="card">
+      <h2>Update Menu Items</h2>
+      <a href="/admin/#/collections/menu">Edit</a>
+    </div>
+    <div class="card">
+      <h2>Manage Reviews</h2>
+      <a href="/admin/#/collections/reviews">Edit</a>
+    </div>
+    <div class="card">
+      <h2>Owner / Shop Images</h2>
+      <a href="/admin/#/collections/settings/entries/about">Edit</a>
+    </div>
+    <div class="card">
+      <h2>PM Modi Video Link</h2>
+      <a href="/admin/#/collections/settings/entries/banner">Edit</a>
+    </div>
+    <div class="card">
+      <h2>Open / Close Timings</h2>
+      <a href="/admin/#/collections/settings/entries/settings">Edit</a>
+    </div>
+    <div class="card">
+      <h2><span style="color:#ff3d00;">Offers / Discounts</span></h2>
+      <a href="/admin/#/collections/offers">Edit</a>
+    </div>
+    <div class="card">
+      <h2>Meta Title & SEO</h2>
+      <a href="/admin/#/collections/settings/entries/settings">Edit</a>
+    </div>
+  </div>
+
+  <a href="/admin/" class="cms-btn">Go to Full CMS Admin Panel</a>
+</body>
+</html>
