@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin Login – Panditan Di Hatti</title>
+  <title>Panditan Di Hatti – Admin Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -70,22 +70,26 @@
 <body>
   <div class="box">
     <h2>Admin Login</h2>
-    <input type="text" id="username" placeholder="Username" />
-    <input type="password" id="password" placeholder="Password" />
-    <input type="submit" value="Login" onclick="login()" />
+    <form onsubmit="login(event)">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <input type="submit" value="Login" />
+    </form>
     <a class="link" href="reset-password.html">Forgot Password?</a>
   </div>
 
   <script>
-    function login() {
+    function login(event) {
+      event.preventDefault(); // Prevent page reload
+
       const user = document.getElementById("username").value;
       const pass = document.getElementById("password").value;
       const storedPass = localStorage.getItem("adminPassword") || "3246";
 
       if (user === "Haarshhit" && pass === storedPass) {
-        window.location.href = "/admin/";
+        window.location.href = "/admin/#/";
       } else {
-        alert("Invalid credentials.");
+        alert("Invalid credentials. Please try again.");
       }
     }
   </script>
