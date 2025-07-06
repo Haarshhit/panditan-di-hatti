@@ -1,2 +1,2 @@
-/#invite_token=:token  /reset-password.html  200
-/#recovery_token=:token  /reset-password.html  200
+/admin/*                /admin/index.html   200
+/reset-password         /reset-password.html 200
