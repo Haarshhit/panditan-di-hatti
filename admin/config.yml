@@ -1,38 +1,53 @@
 backend:
-  name: test-repo
-local_backend: true
+  name: git-gateway
+  branch: main
 
 media_folder: "images"
 public_folder: "/images"
 
 collections:
-  - name: "site"
-    label: "Site Settings"
+  - name: "banner"
+    label: "Banner"
     files:
-      - label: "General Info"
-        name: "general"
-        file: "content/site-info.md"
+      - label: "Banner Content"
+        name: "banner"
+        file: "_data/banner.yml"
         fields:
-          - { label: "Shop Name", name: "title", widget: "string" }
+          - { label: "Heading", name: "heading", widget: "string" }
           - { label: "Tagline", name: "tagline", widget: "string" }
-          - { label: "Zomato Order Link", name: "zomato_link", widget: "string" }
-          - { label: "PM Modi Video Link", name: "pm_video", widget: "string" }
-          - { label: "Open/Close Timings", name: "timings", widget: "string" }
-          - { label: "Banner Text", name: "banner", widget: "string" }
-          - { label: "Offer Text", name: "offers", widget: "string" }
-          - { label: "Footer Text", name: "footer", widget: "string" }
-          - { label: "Logo Image", name: "logo", widget: "image" }
-          - { label: "Owner Image", name: "owner", widget: "image" }
-          - { label: "Shop Image", name: "shop", widget: "image" }
+          - { label: "Logo", name: "logo", widget: "image" }
+
+  - name: "settings"
+    label: "Site Settings"
+    file: "_data/settings.yml"
+    fields:
+      - { label: "Zomato Link", name: "zomato_link", widget: "string" }
+      - { label: "Open Time", name: "open_time", widget: "string" }
+      - { label: "Close Time", name: "close_time", widget: "string" }
+      - { label: "PM Modi Video Link", name: "modi_video", widget: "string" }
+
+  - name: "about"
+    label: "About Us"
+    file: "_data/about.yml"
+    fields:
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Owner Image", name: "owner_image", widget: "image" }
+
+  - name: "offers"
+    label: "Offers"
+    file: "_data/offers.yml"
+    fields:
+      - { label: "Offer Title", name: "offer_title", widget: "string" }
+      - { label: "Offer Description", name: "offer_description", widget: "text" }
 
   - name: "menu"
-    label: "Menu Items"
+    label: "Menu"
     folder: "content/menu"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
       - { label: "Image", name: "image", widget: "image" }
 
   - name: "reviews"
@@ -41,15 +56,5 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Name", name: "title", widget: "string" }
       - { label: "Review", name: "body", widget: "text" }
-
-  - name: "about"
-    label: "About Section"
-    files:
-      - label: "About Us"
-        name: "about"
-        file: "content/about.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
