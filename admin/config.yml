@@ -6,39 +6,48 @@ media_folder: "images"
 public_folder: "/images"
 
 collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "settings"
+        label: "Global Settings"
+        file: "settings.yml"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Zomato Link", name: "zomato", widget: "string" }
+          - { label: "Open Time", name: "open", widget: "string", default: "08:00" }
+          - { label: "Close Time", name: "close", widget: "string", default: "20:30" }
+
   - name: "banner"
     label: "Banner"
     files:
-      - label: "Banner Content"
-        name: "banner"
-        file: "_data/banner.yml"
+      - name: "banner"
+        label: "Top Banner"
+        file: "banner.yml"
         fields:
-          - { label: "Heading", name: "heading", widget: "string" }
-          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Banner Heading", name: "heading", widget: "string" }
+          - { label: "Banner Subtext", name: "subtext", widget: "string" }
           - { label: "Logo", name: "logo", widget: "image" }
-
-  - name: "settings"
-    label: "Site Settings"
-    file: "_data/settings.yml"
-    fields:
-      - { label: "Zomato Link", name: "zomato_link", widget: "string" }
-      - { label: "Open Time", name: "open_time", widget: "string" }
-      - { label: "Close Time", name: "close_time", widget: "string" }
-      - { label: "PM Modi Video Link", name: "modi_video", widget: "string" }
 
   - name: "about"
     label: "About Us"
-    file: "_data/about.yml"
-    fields:
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Owner Image", name: "owner_image", widget: "image" }
+    files:
+      - name: "about"
+        label: "About Section"
+        file: "about.yml"
+        fields:
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Owner Image", name: "owner_image", widget: "image" }
 
   - name: "offers"
     label: "Offers"
-    file: "_data/offers.yml"
+    folder: "content/offers"
+    create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Offer Title", name: "offer_title", widget: "string" }
-      - { label: "Offer Description", name: "offer_description", widget: "text" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "body", widget: "text" }
 
   - name: "menu"
     label: "Menu"
@@ -47,7 +56,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Description", name: "body", widget: "text" }
       - { label: "Image", name: "image", widget: "image" }
 
   - name: "reviews"
