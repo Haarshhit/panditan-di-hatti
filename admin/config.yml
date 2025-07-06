@@ -1,16 +1,21 @@
 backend:
-  name: git-gateway
-  branch: main
+  name: github
+  repo: Haarshhit/panditan-di-hatti  # Your GitHub repository
+  branch: main  # The branch to deploy
+  auth_type: implicit  # Authentication type
+  app_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2  # Your Auth0 application ID
+  base_url: https://pandit-di-hatti.us.auth0.com  # Your Auth0 base URL
+  auth_endpoint: authorize  # Auth endpoint
 
-media_folder: "images"
-public_folder: "/images"
+media_folder: "images"  # Folder for uploaded media files
+public_folder: "/images"  # Public URL for media files
 
 collections:
   - name: "menu"
     label: "Menu Items"
-    folder: "content/menu"
-    create: true
-    slug: "{{slug}}"
+    folder: "content/menu"  # Folder where menu items are stored
+    create: true  # Allow creating new menu items
+    slug: "{{slug}}"  # Slug format for menu items
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
@@ -19,25 +24,9 @@ collections:
 
   - name: "reviews"
     label: "Customer Reviews"
-    folder: "content/reviews"
-    create: true
-    slug: "{{slug}}"
+    folder: "content/reviews"  # Folder where reviews are stored
+    create: true  # Allow creating new reviews
+    slug: "{{slug}}"  # Slug format for reviews
     fields:
       - { label: "Reviewer", name: "reviewer", widget: "string" }
       - { label: "Review", name: "review", widget: "text" }
-
-  - name: "settings"
-    label: "Site Settings"
-    files:
-      - label: "General"
-        name: "general"
-        file: "content/settings.yml"
-        fields:
-          - { label: "Shop Title", name: "shop_title", widget: "string" }
-          - { label: "Tagline", name: "shop_tagline", widget: "string" }
-          - { label: "Logo", name: "logo", widget: "image" }
-          - { label: "About Us Text", name: "about_content", widget: "text" }
-          - { label: "PM Modi Video (YouTube link)", name: "pm_modi_video", widget: "string" }
-          - { label: "Open Time", name: "open_time", widget: "string" }
-          - { label: "Close Time", name: "close_time", widget: "string" }
-          - { label: "Offers / Sales", name: "offers", widget: "text" }
