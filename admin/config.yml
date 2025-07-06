@@ -1,32 +1,73 @@
 backend:
-  name: github
-  repo: Haarshhit/panditan-di-hatti  # Your GitHub repository
-  branch: main  # The branch to deploy
-  auth_type: implicit  # Authentication type
-  app_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2  # Your Auth0 application ID
-  base_url: https://pandit-di-hatti.us.auth0.com  # Your Auth0 base URL
-  auth_endpoint: authorize  # Auth endpoint
+  name: git-gateway
+  branch: main
 
-media_folder: "images"  # Folder for uploaded media files
-public_folder: "/images"  # Public URL for media files
+media_folder: "images"
+public_folder: "/images"
 
 collections:
+  - name: "site"
+    label: "Site Settings"
+    files:
+      - file: "content/settings.yml"
+        label: "General Site Info"
+        name: "site"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Open Time", name: "open_time", widget: "string" }
+          - { label: "Close Time", name: "close_time", widget: "string" }
+          - { label: "Zomato Order Link", name: "zomato_link", widget: "string" }
+          - { label: "PM Modi Video URL", name: "pm_video", widget: "string" }
+
+  - name: "banner"
+    label: "Banner"
+    files:
+      - file: "content/banner.yml"
+        label: "Homepage Banner"
+        name: "banner"
+        fields:
+          - { label: "Banner Text", name: "text", widget: "string" }
+          - { label: "Banner Image", name: "image", widget: "image" }
+
+  - name: "about"
+    label: "About Us"
+    files:
+      - file: "content/about.yml"
+        label: "About Us Section"
+        name: "about"
+        fields:
+          - { label: "About Text", name: "text", widget: "text" }
+          - { label: "Owner Image", name: "owner_image", widget: "image" }
+          - { label: "Shop Image", name: "shop_image", widget: "image" }
+
   - name: "menu"
     label: "Menu Items"
-    folder: "content/menu"  # Folder where menu items are stored
-    create: true  # Allow creating new menu items
-    slug: "{{slug}}"  # Slug format for menu items
+    folder: "content/menu"
+    create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Item Name", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Price (₹)", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
+
+  - name: "offers"
+    label: "Seasonal Offers"
+    folder: "content/offers"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Offer Title", name: "title", widget: "string" }
+      - { label: "Details", name: "details", widget: "text" }
+      - { label: "Valid Until", name: "valid_till", widget: "datetime", required: false }
 
   - name: "reviews"
     label: "Customer Reviews"
-    folder: "content/reviews"  # Folder where reviews are stored
-    create: true  # Allow creating new reviews
-    slug: "{{slug}}"  # Slug format for reviews
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Reviewer", name: "reviewer", widget: "string" }
-      - { label: "Review", name: "review", widget: "text" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Review", name: "body", widget: "text" }
