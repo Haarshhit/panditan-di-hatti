@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title data-netlify-cms="meta_title">Panditan Di Hatti</title>
-  <meta name="description" content="Traditional Indian sweets and snacks from Hamirpur — editable via Netlify CMS" data-netlify-cms="meta_description"/>
-  <link rel="icon" type="image/png" href="images/LOGO.png" data-netlify-cms="logo"/>
+  <title>Panditan Di Hatti</title>
+  <link rel="icon" type="image/png" href="images/LOGO.png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&display=swap');
     body {
@@ -73,11 +72,10 @@
   </style>
 </head>
 <body>
-
   <header class="hero">
     <img src="images/LOGO.png" class="logo" alt="Logo">
-    <h1 data-netlify-cms="title">Panditan Di Hatti</h1>
-    <p class="tagline" data-netlify-cms="tagline">Where Tradition Meets Taste — Since 1980 in Hamirpur (Anu), Himachal Pradesh</p>
+    <h1></h1>
+    <p class="tagline"></p>
     <div id="openStatus" class="status">Checking status...</div>
     <a id="zomatoBtn" class="zomato-order" target="_blank">Order on Zomato</a>
   </header>
@@ -85,7 +83,7 @@
   <section class="about">
     <h2>About Us</h2>
     <p id="about-text">Loading...</p>
-    <img id="owner-image" src="images/OWNER.png" alt="Owner Photo">
+    <img id="owner-image" src="" alt="Owner Photo">
   </section>
 
   <section class="menu">
@@ -95,9 +93,9 @@
 
   <section class="modi-promo">
     <h2>PM Modi Featured Us!</h2>
-    <p data-netlify-cms="modi_text">PM Narendra Modi’s fan pages featured our <strong>Besan Barfi</strong> — and the love from India followed! 🇮🇳</p>
+    <p>PM Narendra Modi’s fan pages featured our <strong>Besan Barfi</strong> — and the love from India followed! 🇮🇳</p>
     <div class="modi-video">
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/QOZa-VSTyek" frameborder="0" allowfullscreen></iframe>
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/QOZa-VSTyek" title="PM Modi YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </section>
 
@@ -124,78 +122,74 @@
 
   <section class="contact">
     <h2>Visit Us</h2>
-    <p data-netlify-cms="address">📍 Near PG Degree College, Anu Market, Hamirpur (Anu), Himachal Pradesh<br>⭐ Rated 4.5★ (1,250+ reviews)</p>
+    <p>📍 Near PG Degree College, Anu Market, Hamirpur (Anu), Himachal Pradesh<br>⭐ Rated 4.5★ (1,250+ reviews)</p>
     <iframe src="https://www.google.com/maps?q=31.750798576238175,76.51580599973934&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
   </section>
 
-  <img src="images/SHOP.avif" alt="Shop Front" class="shop-img" data-netlify-cms="shop_image">
+  <img src="images/SHOP.avif" alt="Shop Front" class="shop-img">
 
   <footer>
-    <p data-netlify-cms="footer">© 2025 Panditan Di Hatti | Website designed by Harshit | Licensed under MIT</p>
+    <p>© 2025 Panditan Di Hatti | Website designed by Harshit | Licensed under MIT</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked-frontmatter@1.0.0/browser.min.js"></script>
   <script>
     const today = new Date().getDay();
     document.querySelectorAll('#timing-list li')[today].classList.add('today');
-    const now = new Date();
-    const totalMins = now.getHours()*60 + now.getMinutes();
-    const openMins = 8*60, closeMins = 20*60 + 30;
-    const isOpen = totalMins >= openMins && totalMins <= closeMins;
-    document.getElementById('openStatus').textContent = isOpen ? '✅ We’re Open Now' : '❌ We’re Closed Now';
-    const btn = document.getElementById('zomatoBtn');
-    btn.classList.add(isOpen ? 'open' : 'closed');
 
     async function fetchYAML(url) {
       const res = await fetch(url);
-      const text = await res.text();
-      return jsyaml.load(text);
+      return jsyaml.load(await res.text());
     }
 
-    async function fetchMarkdownList(path) {
-      const res = await fetch(`https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/contents/${path}`);
+    async function fetchMarkdownList(folder) {
+      const res = await fetch(`https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/contents/${folder}`);
       const files = await res.json();
-      const all = await Promise.all(
+      return Promise.all(
         files.filter(f => f.name.endsWith('.md')).map(async file => {
-          const mdRes = await fetch(file.download_url);
-          const mdText = await mdRes.text();
-          const content = window.marked.parseFrontMatter(mdText);
-          return content;
+          const md = await fetch(file.download_url).then(r => r.text());
+          const parsed = marked.parseFrontMatter(md);
+          parsed.image = /image:\s*(.+)/.exec(md)?.[1] || "";
+          return parsed;
         })
       );
-      return all;
-    }
-
-    function insertMenuItems(menu) {
-      const container = document.getElementById('menu-list');
-      container.innerHTML = menu.map(item => `
-        <div class="menu-item">
-          <img src="${item.image}" alt="${item.title}">
-          <div><strong>${item.title}:</strong> ${item.description}</div>
-        </div>
-      `).join('');
-    }
-
-    function insertReviews(reviews) {
-      const container = document.getElementById('review-list');
-      container.innerHTML = reviews.map(r => `
-        <div class="review"><strong>${r.name}:</strong> ${r.body}</div>
-      `).join('');
     }
 
     async function loadDynamicContent() {
+      const settings = await fetchYAML('settings.yml');
+      const banner = await fetchYAML('banner.yml');
       const about = await fetchYAML('about.yml');
-      document.getElementById('about-text').textContent = about.description || 'About us text not found.';
-
       const menu = await fetchMarkdownList('content/menu');
-      insertMenuItems(menu);
-
       const reviews = await fetchMarkdownList('content/reviews');
-      insertReviews(reviews);
+
+      document.title = settings.title;
+      document.querySelector('header.hero h1').textContent = settings.title;
+      document.querySelector('.tagline').textContent = settings.tagline;
+      document.querySelector('.logo').src = banner.logo;
+
+      document.getElementById('zomatoBtn').href = settings.zomato;
+      const now = new Date(), mins = now.getHours()*60 + now.getMinutes();
+      const open = parseInt(settings.open.split(':')[0])*60 + parseInt(settings.open.split(':')[1]);
+      const close = parseInt(settings.close.split(':')[0])*60 + parseInt(settings.close.split(':')[1]);
+      const isOpen = mins >= open && mins <= close;
+      document.getElementById('openStatus').textContent = isOpen ? '✅ We’re Open Now' : '❌ We’re Closed Now';
+      document.getElementById('zomatoBtn').classList.add(isOpen ? 'open' : 'closed');
+
+      document.getElementById('about-text').textContent = about.description;
+      document.getElementById('owner-image').src = about.owner_image;
+
+      document.getElementById('menu-list').innerHTML = menu.map(item => `
+        <div class="menu-item">
+          <img src="${item.image}" alt="${item.title}">
+          <div><strong>${item.title}:</strong> ${item.body}</div>
+        </div>`).join('');
+
+      document.getElementById('review-list').innerHTML = reviews.map(r => `
+        <div class="review"><strong>${r.title}:</strong> "${r.body}"</div>`).join('');
     }
 
     window.addEventListener('DOMContentLoaded', loadDynamicContent);
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked-frontmatter@1.0.0/browser.min.js"></script>
 </body>
 </html>
