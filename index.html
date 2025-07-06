@@ -7,51 +7,17 @@
   <link rel="icon" type="image/png" href="images/LOGO.png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&display=swap');
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0; padding: 0;
-      background: #fffdf6; color: #333;
-    }
-    header.hero {
-      background: linear-gradient(120deg, #ffc107, #ff9800);
-      padding: 70px 20px 40px;
-      text-align: center;
-      position: relative;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-    header.hero img.logo {
-      position: absolute; top: 15px; left: 15px;
-      width: 70px; height: auto;
-    }
-    header.hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.2em; margin: 0;
-    }
-    header.hero .tagline {
-      font-size: 1.2em; margin-top: 10px;
-      font-style: italic; color: #4e342e;
-    }
-    header.hero .status {
-      font-weight: bold; margin-top: 15px;
-      font-size: 1.1em;
-    }
-    header.hero a.zomato-order {
-      display: inline-block; margin-top: 20px;
-      padding: 12px 25px; text-decoration: none;
-      border-radius: 8px; font-weight: bold;
-      transition: background 0.3s;
-    }
+    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background: #fffdf6; color: #333; }
+    header.hero { background: linear-gradient(120deg, #ffc107, #ff9800); padding: 70px 20px 40px; text-align: center; position: relative; animation: fadeIn 1.5s ease-in-out; }
+    header.hero img.logo { position: absolute; top: 15px; left: 15px; width: 70px; height: auto; }
+    header.hero h1 { font-family: 'Playfair Display', serif; font-size: 3.2em; margin: 0; }
+    header.hero .tagline { font-size: 1.2em; margin-top: 10px; font-style: italic; color: #4e342e; }
+    header.hero .status { font-weight: bold; margin-top: 15px; font-size: 1.1em; }
+    header.hero a.zomato-order { display: inline-block; margin-top: 20px; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; transition: background 0.3s; }
     a.zomato-order.open { background: #e23744; color: white; }
     a.zomato-order.closed { background: #ccc; color: #555; pointer-events: none; }
-    section {
-      padding: 40px 20px; max-width: 1000px; margin: auto;
-    }
-    section h2 {
-      color: #b14520;
-      font-size: 2em;
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 15px;
-    }
+    section { padding: 40px 20px; max-width: 1000px; margin: auto; }
+    section h2 { color: #b14520; font-size: 2em; font-family: 'Playfair Display', serif; margin-bottom: 15px; }
     .about img { max-width:100%; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-top:15px; }
     .menu-item { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom:25px; }
     .menu-item img { width:140px; height:100px; object-fit:cover; border-radius:10px; }
@@ -74,16 +40,16 @@
 <body>
   <header class="hero">
     <img src="images/LOGO.png" class="logo" alt="Logo">
-    <h1></h1>
-    <p class="tagline"></p>
+    <h1>Panditan Di Hatti</h1>
+    <p class="tagline">Loading tagline...</p>
     <div id="openStatus" class="status">Checking status...</div>
-    <a id="zomatoBtn" class="zomato-order" target="_blank">Order on Zomato</a>
+    <a id="zomatoBtn" class="zomato-order" href="#" target="_blank">Order on Zomato</a>
   </header>
 
   <section class="about">
     <h2>About Us</h2>
     <p id="about-text">Loading...</p>
-    <img id="owner-image" src="" alt="Owner Photo">
+    <img id="owner-image" src="images/OWNER.png" alt="Owner Photo">
   </section>
 
   <section class="menu">
@@ -95,7 +61,7 @@
     <h2>PM Modi Featured Us!</h2>
     <p>PM Narendra Modi’s fan pages featured our <strong>Besan Barfi</strong> — and the love from India followed! 🇮🇳</p>
     <div class="modi-video">
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/QOZa-VSTyek" title="PM Modi YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/QOZa-VSTyek" title="PM Modi YouTube Video" frameborder="0" allowfullscreen></iframe>
     </div>
   </section>
 
@@ -115,9 +81,7 @@
   <section class="reviews">
     <h2>⭐ Customer Reviews</h2>
     <div id="review-list">Loading reviews...</div>
-    <div class="review-link">
-      <a href="#reviews">✍️ Write a Review</a>
-    </div>
+    <div class="review-link"><a href="#reviews">✍️ Write a Review</a></div>
   </section>
 
   <section class="contact">
@@ -134,47 +98,44 @@
 
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked-frontmatter@1.0.0/browser.min.js"></script>
+
   <script>
     const today = new Date().getDay();
     document.querySelectorAll('#timing-list li')[today].classList.add('today');
+    const now = new Date();
+    const totalMins = now.getHours() * 60 + now.getMinutes();
+    const openMins = 8 * 60, closeMins = 20 * 60 + 30;
+    const isOpen = totalMins >= openMins && totalMins <= closeMins;
+    document.getElementById('openStatus').textContent = isOpen ? '✅ We’re Open Now' : '❌ We’re Closed Now';
+    document.getElementById('zomatoBtn').classList.add(isOpen ? 'open' : 'closed');
 
-    async function fetchYAML(url) {
-      const res = await fetch(url);
-      return jsyaml.load(await res.text());
+    async function fetchYAML(path) {
+      const res = await fetch(path);
+      const text = await res.text();
+      return jsyaml.load(text);
     }
 
     async function fetchMarkdownList(folder) {
-      const res = await fetch(`https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/contents/${folder}`);
+      const res = await fetch(`https://api.github.com/repos/harshitpandit/panditan-di-hatti/contents/${folder}`);
       const files = await res.json();
-      return Promise.all(
-        files.filter(f => f.name.endsWith('.md')).map(async file => {
-          const md = await fetch(file.download_url).then(r => r.text());
-          const parsed = marked.parseFrontMatter(md);
-          parsed.image = /image:\s*(.+)/.exec(md)?.[1] || "";
-          return parsed;
+      const items = await Promise.all(
+        files.filter(f => f.name.endsWith('.md')).map(async f => {
+          const content = await fetch(f.download_url).then(r => r.text());
+          return marked.parseFrontMatter(content);
         })
       );
+      return items;
     }
 
-    async function loadDynamicContent() {
+    async function loadContent() {
       const settings = await fetchYAML('settings.yml');
-      const banner = await fetchYAML('banner.yml');
       const about = await fetchYAML('about.yml');
       const menu = await fetchMarkdownList('content/menu');
       const reviews = await fetchMarkdownList('content/reviews');
 
-      document.title = settings.title;
-      document.querySelector('header.hero h1').textContent = settings.title;
       document.querySelector('.tagline').textContent = settings.tagline;
-      document.querySelector('.logo').src = banner.logo;
-
-      document.getElementById('zomatoBtn').href = settings.zomato;
-      const now = new Date(), mins = now.getHours()*60 + now.getMinutes();
-      const open = parseInt(settings.open.split(':')[0])*60 + parseInt(settings.open.split(':')[1]);
-      const close = parseInt(settings.close.split(':')[0])*60 + parseInt(settings.close.split(':')[1]);
-      const isOpen = mins >= open && mins <= close;
-      document.getElementById('openStatus').textContent = isOpen ? '✅ We’re Open Now' : '❌ We’re Closed Now';
-      document.getElementById('zomatoBtn').classList.add(isOpen ? 'open' : 'closed');
+      document.querySelector('img.logo').src = settings.logo;
+      document.getElementById('zomatoBtn').href = settings.zomato_link;
 
       document.getElementById('about-text').textContent = about.description;
       document.getElementById('owner-image').src = about.owner_image;
@@ -182,14 +143,16 @@
       document.getElementById('menu-list').innerHTML = menu.map(item => `
         <div class="menu-item">
           <img src="${item.image}" alt="${item.title}">
-          <div><strong>${item.title}:</strong> ${item.body}</div>
-        </div>`).join('');
+          <div><strong>${item.title}:</strong> ${item.description}</div>
+        </div>
+      `).join('');
 
       document.getElementById('review-list').innerHTML = reviews.map(r => `
-        <div class="review"><strong>${r.title}:</strong> "${r.body}"</div>`).join('');
+        <div class="review"><strong>${r.name}:</strong> ${r.body}</div>
+      `).join('');
     }
 
-    window.addEventListener('DOMContentLoaded', loadDynamicContent);
+    window.addEventListener('DOMContentLoaded', loadContent);
   </script>
 </body>
 </html>
