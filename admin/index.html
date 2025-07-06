@@ -1,37 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Reset Password</title>
+  <meta charset="UTF-8" />
+  <title>Panditan Di Hatti Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf6e3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      background-color: #f57c00;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #cms {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Reset Your Password</h1>
-    <form id="reset-password-form">
-        <input type="hidden" name="token" id="token" value="">
-        <label for="new_password">New Password:</label>
-        <input type="password" id="new_password" name="new_password" required>
-        <button type="submit">Reset Password</button>
-    </form>
+  <div class="container" id="login">
+    <h2>🔐 Admin Login</h2>
+    <input type="password" id="adminPass" placeholder="Enter password" />
+    <button onclick="checkPassword()">Login</button>
+    <div id="error"></div>
+  </div>
 
-    <script>
-        // Extract token from URL
-        const urlParams = new URLSearchParams(window.location.hash.substring(1));
-        const token = urlParams.get('recovery_token');
+  <div id="cms">
+    <!-- Netlify CMS loads here -->
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  </div>
 
-        if (token) {
-            document.getElementById('token').value = token;
-        } else {
-            alert('Invalid password reset link. Please try again.');
-        }
-
-        document.getElementById('reset-password-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const newPassword = document.getElementById('new_password').value;
-
-            // Here you would typically send the token and new password to your server
-            console.log('Token:', token);
-            console.log('New Password:', newPassword);
-        });
-    </script>
+  <script>
+    function checkPassword() {
+      const pass = document.getElementById('adminPass').value;
+      if (pass === '3246') {
+        document.getElementById('login').style.display = 'none';
+        document.getElementById('cms').style.display = 'block';
+      } else {
+        document.getElementById('error').innerText = '❌ Incorrect password.';
+      }
+    }
+  </script>
 </body>
 </html>
