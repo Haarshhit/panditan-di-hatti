@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
+    <!-- 🔒 JS Protection: Redirect to login.html if not logged in -->
+    <script>
+      const storedPassword = localStorage.getItem('adminPassword');
+      if (!storedPassword) {
+        // Not logged in → redirect to login
+        window.location.href = "/admin/login.html";
+      }
+    </script>
+
+    <!-- ✅ Load Netlify CMS -->
     <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
   </body>
 </html>
