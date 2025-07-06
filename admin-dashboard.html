@@ -5,38 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Panditan Di Hatti Admin Dashboard</title>
   <meta name="description" content="Admin Portal - Panditan Di Hatti" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="icon" type="image/png" href="/images/LOGO.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      box-sizing: border-box;
-    }
-
     body {
-      background: linear-gradient(to bottom right, #fff0e5, #ffe8d6);
-      color: #333;
-      padding: 40px 20px;
+      font-family: 'Poppins', sans-serif;
+      background: #fff0e5;
+      margin: 0;
+      padding: 20px;
       text-align: center;
-      animation: fadeIn 1s ease-in;
     }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #a83232;
-      animation: popIn 0.6s ease-out;
+    .login-box {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
+    input[type="password"] {
+      padding: 12px;
+      width: 80%;
+      margin: 15px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background: #d4145a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #aa0d47;
+    }
     .dashboard {
+      display: none;
+    }
+
+    /* Dashboard styles same as before... */
+    .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
       max-width: 1000px;
-      margin: 0 auto;
-      margin-top: 30px;
+      margin: 40px auto;
     }
 
     .card {
@@ -44,13 +60,11 @@
       border-radius: 16px;
       padding: 25px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: slideUp 0.5s ease forwards;
+      transition: transform 0.3s ease;
     }
 
     .card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
     }
 
     .card h2 {
@@ -66,16 +80,10 @@
       padding: 10px 20px;
       border-radius: 8px;
       display: inline-block;
-      margin-top: 10px;
-      transition: background 0.3s ease;
-    }
-
-    .card a:hover {
-      background: #c13b50;
     }
 
     .cms-btn {
-      margin-top: 50px;
+      margin-top: 30px;
       display: inline-block;
       background: #3c40c6;
       color: #fff;
@@ -83,71 +91,47 @@
       border-radius: 10px;
       font-weight: bold;
       text-decoration: none;
-      transition: background 0.3s ease;
-    }
-
-    .cms-btn:hover {
-      background: #2428b6;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes popIn {
-      0% { transform: scale(0.9); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      0% { transform: translateY(20px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <h1>🍬 Admin Dashboard - Panditan Di Hatti</h1>
 
-  <div class="dashboard">
-    <div class="card">
-      <h2>Edit Banner</h2>
-      <a href="/admin/#/collections/settings/entries/banner">Edit</a>
-    </div>
-    <div class="card">
-      <h2>Edit About Us</h2>
-      <a href="/admin/#/collections/settings/entries/about">Edit</a>
-    </div>
-    <div class="card">
-      <h2>Update Menu Items</h2>
-      <a href="/admin/#/collections/menu">Edit</a>
-    </div>
-    <div class="card">
-      <h2>Manage Reviews</h2>
-      <a href="/admin/#/collections/reviews">Edit</a>
-    </div>
-    <div class="card">
-      <h2>Owner / Shop Images</h2>
-      <a href="/admin/#/collections/settings/entries/about">Edit</a>
-    </div>
-    <div class="card">
-      <h2>PM Modi Video Link</h2>
-      <a href="/admin/#/collections/settings/entries/banner">Edit</a>
-    </div>
-    <div class="card">
-      <h2>Open / Close Timings</h2>
-      <a href="/admin/#/collections/settings/entries/settings">Edit</a>
-    </div>
-    <div class="card">
-      <h2><span style="color:#ff3d00;">Offers / Discounts</span></h2>
-      <a href="/admin/#/collections/offers">Edit</a>
-    </div>
-    <div class="card">
-      <h2>Meta Title & SEO</h2>
-      <a href="/admin/#/collections/settings/entries/settings">Edit</a>
-    </div>
+  <!-- Login Form -->
+  <div class="login-box" id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="password" id="passwordInput" placeholder="Enter Password" />
+    <br>
+    <button onclick="checkPassword()">Access Dashboard</button>
+    <p id="error" style="color:red; display:none;">Incorrect password. Try again.</p>
   </div>
 
-  <a href="/admin/" class="cms-btn">Go to Full CMS Admin Panel</a>
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+    <h1>🍬 Admin Dashboard - Panditan Di Hatti</h1>
+    <div class="dashboard-grid">
+      <div class="card"><h2>Edit Banner</h2><a href="/admin/#/collections/settings/entries/banner">Edit</a></div>
+      <div class="card"><h2>Edit About Us</h2><a href="/admin/#/collections/settings/entries/about">Edit</a></div>
+      <div class="card"><h2>Update Menu Items</h2><a href="/admin/#/collections/menu">Edit</a></div>
+      <div class="card"><h2>Manage Reviews</h2><a href="/admin/#/collections/reviews">Edit</a></div>
+      <div class="card"><h2>Owner / Shop Images</h2><a href="/admin/#/collections/settings/entries/about">Edit</a></div>
+      <div class="card"><h2>PM Modi Video Link</h2><a href="/admin/#/collections/settings/entries/banner">Edit</a></div>
+      <div class="card"><h2>Open / Close Timings</h2><a href="/admin/#/collections/settings/entries/settings">Edit</a></div>
+      <div class="card"><h2 style="color:#ff3d00;">Offers / Discounts</h2><a href="/admin/#/collections/offers">Edit</a></div>
+      <div class="card"><h2>Meta Title & SEO</h2><a href="/admin/#/collections/settings/entries/settings">Edit</a></div>
+    </div>
+    <a href="/admin/" class="cms-btn">Go to Full CMS Admin Panel</a>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      if (input === "3246") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+      } else {
+        document.getElementById("error").style.display = "block";
+      }
+    }
+  </script>
 </body>
 </html>
