@@ -1,7 +1,7 @@
 backend:
   name: auth0
-  domain: pandit-di-hatti.us.auth0.com  # ✅ Your Auth0 domain
-  client_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2  # ✅ Your Auth0 app client ID
+  domain: pandit-di-hatti.us.auth0.com
+  client_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2
   base_url: https://panditandihatti.netlify.app
   site_domain: panditandihatti.netlify.app
 
@@ -22,10 +22,13 @@ collections:
 
   - name: "about"
     label: "About Us"
-    file: "about.yml"
-    fields:
-      - { name: "description", label: "Description", widget: "text" }
-      - { name: "owner_image", label: "Owner Image", widget: "image" }
+    files:
+      - label: "About Content"
+        name: "about_content"
+        file: "about.yml"
+        fields:
+          - { name: "description", label: "Description", widget: "text" }
+          - { name: "owner_image", label: "Owner Image", widget: "image" }
 
   - name: "menu"
     label: "Menu Items"
@@ -57,11 +60,14 @@ collections:
 
   - name: "settings"
     label: "Site Settings"
-    file: "settings.yml"
-    fields:
-      - { name: "zomato_link", label: "Zomato Order Link", widget: "string" }
-      - { name: "pm_video", label: "PM Modi Video URL", widget: "string" }
-      - { name: "footer_text", label: "Footer Text", widget: "string" }
-      - { name: "meta_title", label: "Meta Title", widget: "string" }
-      - { name: "meta_description", label: "Meta Description", widget: "string" }
-      - { name: "logo", label: "Logo Image", widget: "image" }
+    files:
+      - label: "Main Settings"
+        name: "main_settings"
+        file: "settings.yml"
+        fields:
+          - { name: "zomato_link", label: "Zomato Order Link", widget: "string" }
+          - { name: "pm_video", label: "PM Modi Video URL", widget: "string" }
+          - { name: "footer_text", label: "Footer Text", widget: "string" }
+          - { name: "meta_title", label: "Meta Title", widget: "string" }
+          - { name: "meta_description", label: "Meta Description", widget: "string" }
+          - { name: "logo", label: "Logo Image", widget: "image" }
