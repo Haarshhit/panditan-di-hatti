@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Panditan Di Hatti</title>
-  <link rel="icon" type="image/png" href="images/LOGO.png" />
+  <title data-netlify-cms="site.title">Panditan Di Hatti</title>
+  <link rel="icon" type="image/png" href="images/LOGO.png" data-netlify-cms="site.favicon"/>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&display=swap');
     body {
@@ -52,30 +52,21 @@
       font-family: 'Playfair Display', serif;
       margin-bottom: 15px;
     }
-    .about img { max-width:100%; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-top:15px; }
     .menu-item { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom:25px; }
     .menu-item img { width:140px; height:100px; object-fit:cover; border-radius:10px; }
-    .modi-promo { text-align:center; }
-    .modi-promo iframe { width:300px; max-width:100%; border-radius:10px; margin:20px auto; display:block; }
-    .timings ul { list-style:none; padding:0; font-size:1.1em; }
-    .timings ul li { padding:8px; border-radius:6px; margin:5px 0; background:#fff0db; }
-    .timings ul li.today { background:#ffd54f; font-weight:bold; animation:pulse 1.2s infinite; }
     .reviews .review { background:#fffaf0; padding:15px; margin-bottom:20px; border-radius:8px; box-shadow:0 3px 8px rgba(0,0,0,0.05); }
     .review strong { color:#d35400; }
     .review-link { text-align:center; margin:30px; }
     .review-link a { background:#3f51b5; color:white; padding:10px 20px; text-decoration:none; border-radius:8px; font-weight:bold; }
-    .contact iframe { width:100%; height:300px; border:0; border-radius:10px; margin-top:20px; }
-    .shop-img { display:block; margin:30px auto; max-width:1000px; width:100%; border-radius:12px; }
     footer { background:#ffe0b2; text-align:center; padding:20px; color:#333; }
     @keyframes fadeIn { 0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);} }
-    @keyframes pulse {0%{background-color:#ffeb3b;}50%{background-color:#fff176;}100%{background-color:#ffeb3b;}}
   </style>
 </head>
 <body>
   <header class="hero">
     <img src="images/LOGO.png" class="logo" alt="Logo">
-    <h1>Panditan Di Hatti</h1>
-    <p class="tagline">Where Tradition Meets Taste — Since 1980 in Hamirpur (Anu), Himachal Pradesh</p>
+    <h1 data-netlify-cms="site.title">Panditan Di Hatti</h1>
+    <p class="tagline" data-netlify-cms="site.tagline">Where Tradition Meets Taste — Since 1980 in Hamirpur</p>
     <div id="openStatus" class="status">Checking status...</div>
     <a id="zomatoBtn" class="zomato-order" target="_blank">Order on Zomato</a>
   </header>
@@ -91,52 +82,24 @@
     <div id="menu-list">Loading menu...</div>
   </section>
 
-  <section class="modi-promo">
-    <h2>PM Modi Featured Us!</h2>
-    <p>PM Narendra Modi’s fan pages featured our <strong>Besan Barfi</strong> — and the love from India followed! 🇮🇳</p>
-    <div class="modi-video">
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/QOZa-VSTyek"
-        title="PM Modi YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <section class="timings">
-    <h2>🕒 Opening Hours</h2>
-    <ul id="timing-list">
-      <li>Sunday: <span>08:00 AM – 08:30 PM</span></li>
-      <li>Monday: <span>08:00 AM – 08:30 PM</span></li>
-      <li>Tuesday: <span>08:00 AM – 08:30 PM</span></li>
-      <li>Wednesday: <span>08:00 AM – 08:30 PM</span></li>
-      <li>Thursday: <span>08:00 AM – 08:30 PM</span></li>
-      <li>Friday: <span>08:00 AM – 08:30 PM</span></li>
-      <li>Saturday: <span>08:00 AM – 08:30 PM</span></li>
-    </ul>
-  </section>
-
   <section class="reviews">
     <h2>⭐ Customer Reviews</h2>
     <div id="review-list">Loading reviews...</div>
-    <div class="review-link"><a href="#reviews">✍️ Write a Review</a></div>
+    <div class="review-link"><a href="#">✍️ Write a Review</a></div>
   </section>
-
-  <section class="contact">
-    <h2>Visit Us</h2>
-    <p>📍 Near PG Degree College, Anu Market, Hamirpur (Anu), Himachal Pradesh<br>⭐ Rated 4.5★ (1,250+ reviews)</p>
-    <iframe src="https://www.google.com/maps?q=31.750798576238175,76.51580599973934&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
-  </section>
-
-  <img src="images/SHOP.avif" alt="Shop Front" class="shop-img">
 
   <footer>
-    <p>© 2025 Panditan Di Hatti | Website designed by Harshit | Licensed under MIT</p>
+    <p data-netlify-cms="site.footer">© 2025 Panditan Di Hatti | Designed by Harshit</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked-frontmatter@1.0.0/browser.min.js"></script>
   <script>
-    const today = new Date().getDay();
-    document.querySelectorAll('#timing-list li')[today].classList.add('today');
+    // Highlight today's hours and open status
     const now = new Date();
-    const totalMins = now.getHours()*60 + now.getMinutes();
-    const openMins = 8*60, closeMins = 20*60 + 30;
+    const today = now.getDay();
+    const openMins = 8 * 60, closeMins = 20 * 60 + 30;
+    const totalMins = now.getHours() * 60 + now.getMinutes();
     const isOpen = totalMins >= openMins && totalMins <= closeMins;
     document.getElementById('openStatus').textContent = isOpen ? '✅ We’re Open Now' : '❌ We’re Closed Now';
     const btn = document.getElementById('zomatoBtn');
@@ -156,7 +119,7 @@
           const mdRes = await fetch(file.download_url);
           const mdText = await mdRes.text();
           const content = window.marked.parseFrontMatter(mdText);
-          return content;
+          return content.attributes;
         })
       );
       return all;
@@ -181,7 +144,8 @@
 
     async function loadDynamicContent() {
       const about = await fetchYAML('about.yml');
-      document.getElementById('about-text').textContent = about.description || 'About us text not found.';
+      document.getElementById('about-text').textContent = about.description;
+      document.getElementById('owner-image').src = about.image;
 
       const menu = await fetchMarkdownList('content/menu');
       insertMenuItems(menu);
@@ -192,7 +156,5 @@
 
     window.addEventListener('DOMContentLoaded', loadDynamicContent);
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked-frontmatter@1.0.0/browser.min.js"></script>
 </body>
 </html>
