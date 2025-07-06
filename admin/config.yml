@@ -1,3 +1,10 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
 collections:
   - name: "menu"
     label: "Menu Items"
@@ -19,20 +26,20 @@ collections:
       - { label: "Reviewer Name", name: "name", widget: "string" }
       - { label: "Review", name: "review", widget: "text" }
 
-  - name: "site_settings"
+  - name: "settings"
     label: "Site Settings"
-    files:
-      - file: "content/settings.yml"
-        label: "Site Settings"
+    file: "content/settings.yml"
+    fields:
+      - { label: "Banner Text", name: "banner_text", widget: "string" }
+      - { label: "Tagline", name: "tagline", widget: "string" }
+      - { label: "About Us Text", name: "about_us", widget: "text" }
+      - { label: "Owner Image", name: "owner_image", widget: "image" }
+      - { label: "Shop Image", name: "shop_image", widget: "image" }
+      - { label: "PM Modi YouTube Link", name: "pm_modi_video", widget: "string" }
+      - { label: "Offer/Discount", name: "offer_text", widget: "string" }
+      - label: "Open/Close Timings"
+        name: "open_close"
+        widget: "list"
         fields:
-          - { label: "Banner Text", name: "banner_text", widget: "string" }
-          - { label: "Tagline", name: "tagline", widget: "string" }
-          - { label: "About Us Text", name: "about_text", widget: "text" }
-          - { label: "Owner Image", name: "owner_image", widget: "image" }
-          - { label: "Shop Image", name: "shop_image", widget: "image" }
-          - { label: "Modi Video (YouTube Link)", name: "pm_modi_video", widget: "string" }
-          - { label: "Open/Close Times", name: "open_close", widget: "list", fields: [
-              { label: "Day", name: "day", widget: "string" },
-              { label: "Hours", name: "hours", widget: "string" }
-            ] }
-          - { label: "Offer / Sale Text", name: "offer", widget: "string" }
+          - { label: "Day", name: "day", widget: "string" }
+          - { label: "Hours", name: "hours", widget: "string" }
