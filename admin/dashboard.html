@@ -2,28 +2,13 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Admin Login</title>
-  <style>
-    body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #fff0cc; }
-    .login-box { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    input { padding: 10px; margin: 10px 0; width: 100%; }
-    button { padding: 10px; width: 100%; background: #e65100; color: white; border: none; border-radius: 5px; }
-  </style>
+  <title>Panditan Di Hatti CMS</title>
+  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
 </head>
 <body>
-  <div class="login-box">
-    <h2>Admin Login</h2>
-    <input type="password" id="pwd" placeholder="Enter Password" />
-    <button onclick="check()">Login</button>
-  </div>
   <script>
-    function check() {
-      if (document.getElementById('pwd').value === '3246') {
-        window.location.href = 'dashboard.html';
-      } else {
-        alert('Incorrect password');
-      }
-    }
+    window.CMS_MANUAL_INIT = true;
+    CMS.init();
   </script>
 </body>
 </html>
