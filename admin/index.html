@@ -4,74 +4,283 @@
   <meta charset="UTF-8" />
   <title>Panditan Di Hatti Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Secure admin portal for Panditan Di Hatti">
+  <link rel="preconnect" href="https://unpkg.com">
   <style>
+    :root {
+      --primary-color: #ffc107;
+      --primary-hover: #ff9800;
+      --error-color: #d32f2f;
+      --success-color: #388e3c;
+      --text-color: #333;
+      --bg-color: #fffdf6;
+      --border-radius: 4px;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: sans-serif;
-      background: #fffdf6;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg-color);
       margin: 0;
-      padding: 2rem;
-      color: #333;
+      padding: 0;
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .hidden { display: none; }
-    .center {
-      max-width: 500px;
-      margin: 0 auto;
-      text-align: center;
+    
+    .hidden { 
+      display: none !important; 
     }
-    input[type="password"] {
-      padding: 10px;
+    
+    .container {
       width: 100%;
-      margin-top: 1rem;
-      font-size: 16px;
+      max-width: 500px;
+      padding: 2rem;
     }
+    
+    .center {
+      text-align: center;
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #5d4037;
+    }
+    
+    .input-group {
+      margin: 1.5rem 0;
+      position: relative;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      text-align: left;
+    }
+    
+    input[type="password"] {
+      padding: 12px 15px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      transition: border 0.3s;
+    }
+    
+    input[type="password"]:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
     button {
-      margin-top: 1rem;
-      padding: 10px 20px;
-      background: #ffc107;
+      width: 100%;
+      padding: 12px;
+      background: var(--primary-color);
       border: none;
+      border-radius: var(--border-radius);
       font-size: 16px;
+      font-weight: 500;
       cursor: pointer;
+      transition: background 0.3s;
     }
+    
     button:hover {
-      background: #ff9800;
+      background: var(--primary-hover);
+    }
+    
+    #message {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: var(--border-radius);
+    }
+    
+    .error {
+      background-color: rgba(211, 47, 47, 0.1);
+      color: var(--error-color);
+    }
+    
+    .success {
+      background-color: rgba(56, 142, 60, 0.1);
+      color: var(--success-color);
+    }
+    
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--primary-color);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .password-container {
+      position: relative;
+    }
+    
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+      font-size: 80%;
+    }
+    
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <div class="center" id="login-box">
-    <h2>🔐 Admin Login</h2>
-    <p>Enter the admin password:</p>
-    <input type="password" id="admin-pass" placeholder="Enter password..." />
-    <button onclick="checkPass()">Login</button>
-    <p id="error" style="color:red;"></p>
+  <div class="container">
+    <div id="login-box" class="center">
+      <h2>🔐 Admin Login</h2>
+      <p>Enter the admin password to access the dashboard</p>
+      
+      <div class="input-group">
+        <label for="admin-pass">Password</label>
+        <div class="password-container">
+          <input type="password" id="admin-pass" placeholder="Enter password..." 
+                 autocomplete="current-password" required />
+          <div class="toggle-password" onclick="togglePasswordVisibility()">Show</div>
+        </div>
+      </div>
+      
+      <button id="login-btn" onclick="checkPass()">Login</button>
+      
+      <div id="message"></div>
+      
+      <footer>
+        Panditan Di Hatti &copy; <span id="current-year"></span>
+      </footer>
+    </div>
+
+    <div id="cms-container" class="hidden center">
+      <div class="loader"></div>
+      <p>Loading Admin Dashboard...</p>
+    </div>
   </div>
 
-  <div id="cms-container" class="hidden"></div>
-
   <script>
-    function checkPass() {
-      const password = document.getElementById('admin-pass').value;
-      const correct = '3246';
-
-      if (password === correct) {
-        document.getElementById('login-box').style.display = 'none';
-        document.getElementById('cms-container').classList.remove('hidden');
-
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js';
-        script.onerror = () => {
-          document.getElementById('cms-container').innerHTML = '<p style="color:red;">❌ Failed to load CMS script</p>';
-        };
-        document.body.appendChild(script);
+    // Set current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    let attemptCount = 0;
+    const maxAttempts = 5;
+    const correctPassword = '3246'; // Replace with more secure authentication
+    
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('admin-pass');
+      const toggleBtn = document.querySelector('.toggle-password');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleBtn.textContent = 'Hide';
       } else {
-        document.getElementById('error').innerText = '❌ Wrong password. Try again.';
+        passwordInput.type = 'password';
+        toggleBtn.textContent = 'Show';
       }
     }
+    
+    function showMessage(text, isError = true) {
+      const messageDiv = document.getElementById('message');
+      messageDiv.textContent = text;
+      messageDiv.className = isError ? 'error' : 'success';
+    }
+    
+    function checkPass() {
+      const password = document.getElementById('admin-pass').value.trim();
+      const loginBtn = document.getElementById('login-btn');
+      
+      if (!password) {
+        showMessage('Please enter a password');
+        return;
+      }
+      
+      // Simulate loading
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Verifying...';
+      
+      // Simulate network delay (remove in production)
+      setTimeout(() => {
+        if (password === correctPassword) {
+          handleSuccess();
+        } else {
+          handleFailedAttempt();
+        }
+      }, 500);
+    }
+    
+    function handleSuccess() {
+      document.getElementById('login-box').classList.add('hidden');
+      document.getElementById('cms-container').classList.remove('hidden');
+      
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js';
+      script.onload = () => {
+        document.getElementById('cms-container').innerHTML = '<p>Redirecting to dashboard...</p>';
+      };
+      script.onerror = () => {
+        document.getElementById('cms-container').innerHTML = `
+          <p style="color: var(--error-color);">
+            Failed to load CMS script. Please refresh the page or check your connection.
+          </p>
+          <button onclick="window.location.reload()">Try Again</button>
+        `;
+      };
+      document.body.appendChild(script);
+    }
+    
+    function handleFailedAttempt() {
+      attemptCount++;
+      const loginBtn = document.getElementById('login-btn');
+      const remainingAttempts = maxAttempts - attemptCount;
+      
+      if (attemptCount >= maxAttempts) {
+        loginBtn.disabled = true;
+        showMessage('Too many failed attempts. Please try again later.');
+        setTimeout(() => {
+          loginBtn.disabled = false;
+          attemptCount = 0;
+          document.getElementById('admin-pass').value = '';
+        }, 30000); // 30-second timeout
+      } else {
+        showMessage(`Incorrect password. ${remainingAttempts > 0 ? `${remainingAttempts} attempts remaining.` : 'Last attempt.'}`);
+      }
+      
+      loginBtn.textContent = 'Login';
+    }
+    
+    // Allow pressing Enter key to submit
+    document.getElementById('admin-pass').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkPass();
+      }
+    });
   </script>
 
   <noscript>
-    <div style="text-align:center;padding:2rem;">
-      Please enable JavaScript to use the admin panel.
+    <div class="center" style="color: var(--error-color);">
+      JavaScript is required to use the admin panel. Please enable JavaScript in your browser settings.
     </div>
   </noscript>
 </body>
