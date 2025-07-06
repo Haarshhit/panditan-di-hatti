@@ -1,42 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Panditan Di Hatti Admin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-</head>
-<body class="bg-gradient-to-br from-orange-50 to-amber-50 min-h-screen">
-
-  <div class="animate__animated animate__fadeIn">
-    <!-- HEADER & DASHBOARD CARDS: Same as yours (keep as is) -->
-    <!-- ... -->
-
-    <!-- CMS container -->
-    <div class="mt-10 mx-auto max-w-5xl animate__animated animate__fadeInUp animate__delay-2s">
-      <div class="bg-white rounded-xl shadow-xl overflow-hidden">
-        <div class="bg-gradient-to-r from-amber-400 to-amber-500 p-4 text-white font-bold">
-          <!-- Icon + title -->
-          Content Manager
-        </div>
-        <div id="cms" class="p-6"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ✅ Script to load config.yml dynamically -->
-  <script>
-    window.CMS_MANUAL_INIT = true;
-
-    fetch('/config.yml')
-      .then(response => response.text())
-      .then(yaml => {
-        const config = window.jsyaml.load(yaml);
-        CMS.init({ config });
-      });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Panditan Di Hatti Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  </head>
+  <body>
+    <div id="nc-root"></div>
+  </body>
 </html>
