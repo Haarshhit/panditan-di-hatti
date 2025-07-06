@@ -1,91 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Panditan Di Hatti Admin Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      background: linear-gradient(135deg, #ffcc70, #ff8c00);
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
-    }
-
-    .login-box {
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      text-align: center;
-      max-width: 400px;
-      width: 100%;
-    }
-
-    h2 {
-      color: #ff6600;
-      margin-bottom: 20px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      background: #ff6600;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background: #e65c00;
-    }
-
-    .link {
-      display: block;
-      margin-top: 15px;
-      font-size: 14px;
-      color: #333;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="login-box">
-    <h2>Admin Login</h2>
-    <input type="text" id="username" placeholder="Username" />
-    <input type="password" id="password" placeholder="Password" />
-    <button id="loginBtn">Login</button>
-    <a class="link" href="reset-password.html">Forgot Password?</a>
-  </div>
-
-  <script>
-    document.getElementById("loginBtn").addEventListener("click", function () {
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const stored = localStorage.getItem("adminPassword") || "3246";
-
-      if (username === "Haarshhit" && password === stored) {
-        window.location.href = "/admin/index.html#/";
-      } else {
-        alert("❌ Invalid username or password.");
+  <head>
+    <meta charset="UTF-8" />
+    <title>Panditan Di Hatti Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <script>
+      const storedPassword = localStorage.getItem('adminPassword');
+      if (!storedPassword) {
+        window.location.href = "/admin/login.html";
       }
-    });
-  </script>
-</body>
+    </script>
+
+    <!-- Netlify CMS script -->
+    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+  </body>
 </html>
