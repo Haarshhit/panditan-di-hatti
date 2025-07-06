@@ -1,36 +1,11 @@
- media_folder: "images"
+backend:
+  name: test-repo
+  login: false
+
+media_folder: "images"
 public_folder: "/images"
 
 collections:
-  - name: "banner"
-    label: "Banner"
-    files:
-      - file: "banner.yml"
-        label: "Banner Content"
-        name: "banner"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Tagline", name: "tagline", widget: "string" }
-
-  - name: "about"
-    label: "About Section"
-    files:
-      - file: "about.yml"
-        label: "About Info"
-        name: "about"
-        fields:
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Owner Image", name: "owner_image", widget: "image" }
-
-  - name: "offers"
-    label: "Offers & Discounts"
-    folder: "content/offers"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Details", name: "details", widget: "text" }
-
   - name: "menu"
     label: "Menu Items"
     folder: "content/menu"
@@ -51,32 +26,12 @@ collections:
       - { label: "Review", name: "review", widget: "text" }
 
   - name: "settings"
-    label: "Website Settings"
+    label: "Site Settings"
     files:
       - file: "settings.yml"
-        label: "Basic Settings"
+        label: "General Settings"
         name: "settings"
         fields:
-          - { label: "Meta Title", name: "meta_title", widget: "string" }
-          - { label: "Meta Description", name: "meta_description", widget: "text" }
-          - { label: "Zomato Link", name: "zomato_url", widget: "string" }
+          - { label: "Zomato URL", name: "zomato_url", widget: "string" }
           - { label: "Open Time (Minutes)", name: "open_time", widget: "number" }
           - { label: "Close Time (Minutes)", name: "close_time", widget: "number" }
-
-  - name: "video"
-    label: "PM Modi Video"
-    files:
-      - file: "video.yml"
-        label: "Video Section"
-        name: "video"
-        fields:
-          - { label: "YouTube Link", name: "youtube", widget: "string" }
-
-  - name: "footer"
-    label: "Footer"
-    files:
-      - file: "footer.yml"
-        label: "Footer Text"
-        name: "footer"
-        fields:
-          - { label: "Footer Content", name: "footer_text", widget: "text" }
