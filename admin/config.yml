@@ -5,27 +5,40 @@ backend:
 media_folder: "images"
 public_folder: "/images"
 
-site_url: https://panditandihatti.netlify.app
-
 collections:
-  - name: "menu"
-    label: "Menu Items"
-    folder: "content/menu"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image" }
+  - name: "banner"
+    label: "Banner Section"
+    files:
+      - file: "banner.yml"
+        label: "Banner Content"
+        name: "banner_content"
+        fields:
+          - {label: "Heading", name: "heading", widget: "string"}
+          - {label: "Subheading", name: "subheading", widget: "string"}
+          - {label: "Banner Image", name: "image", widget: "image"}
 
-  - name: "reviews"
-    label: "Customer Reviews"
-    folder: "content/reviews"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Name", name: "title", widget: "string" }
-      - { label: "Review", name: "body", widget: "text" }
+  - name: "about"
+    label: "About Us"
+    files:
+      - file: "about.yml"
+        label: "About Section"
+        name: "about_section"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - {label: "Owner Image", name: "owner_image", widget: "image"}
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - file: "settings.yml"
+        label: "Global Settings"
+        name: "global_settings"
+        fields:
+          - {label: "Site Title", name: "site_title", widget: "string"}
+          - {label: "Tagline", name: "tagline", widget: "string"}
+          - {label: "Favicon", name: "favicon", widget: "image"}
+          - {label: "Zomato Link", name: "zomato_link", widget: "string"}
 
   - name: "offers"
     label: "Offers"
@@ -33,26 +46,26 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Offer Title", name: "title", widget: "string" }
-      - { label: "Details", name: "body", widget: "text" }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image"}
 
-  - name: "about"
-    label: "About Us"
-    file: "content/about.yml"
+  - name: "menu"
+    label: "Menu Items"
+    folder: "content/menu"
+    create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Description", name: "description", widget: "text" }
+      - {label: "Item Name", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price", name: "price", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
 
-  - name: "banner"
-    label: "Banner"
-    file: "content/banner.yml"
+  - name: "reviews"
+    label: "Customer Reviews"
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Heading", name: "heading", widget: "string" }
-      - { label: "Tagline", name: "tagline", widget: "string" }
-      - { label: "Logo Image", name: "logo", widget: "image" }
-
-  - name: "settings"
-    label: "Settings"
-    file: "content/settings.yml"
-    fields:
-      - { label: "Zomato Link", name: "zomato_url", widget: "string" }
-      - { label: "PM Modi Video", name: "modi_video_url", widget: "string" }
+      - {label: "Reviewer Name", name: "title", widget: "string"}
+      - {label: "Review", name: "body", widget: "text"}
