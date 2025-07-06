@@ -1,3 +1,8 @@
-/recovery_token=:token  /admin  302!
+# Redirect for password recovery
+/recovery_token=:token  /admin/reset-password.html 200
+
+# Redirect for admin dashboard
 /admin/*               /admin/index.html 200
+
+# Catch-all redirect for SPA
 /*                     /index.html       200
