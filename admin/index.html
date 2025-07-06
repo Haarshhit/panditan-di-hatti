@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Login</title>
+  <meta charset="UTF-8" />
+  <title>Panditan Di Hatti Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>
-    const pass = prompt("🔐 Enter password to access Admin:");
-    if (pass !== "3246") {
-      document.body.innerHTML = "<h2>❌ Access Denied</h2>";
-      throw new Error("Wrong password");
-    }
+    // Show password prompt early, but don’t block the CMS load
+    window.onload = function () {
+      const pass = prompt("🔐 Enter password to access Admin:");
+      if (pass !== "3246") {
+        document.body.innerHTML = "<h2 style='color:red;'>❌ Access Denied. Wrong Password.</h2>";
+      } else {
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js";
+        document.body.appendChild(script);
+      }
+    };
   </script>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <noscript>Please enable JavaScript to access admin panel.</noscript>
 </body>
 </html>
