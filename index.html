@@ -43,6 +43,14 @@
     }
     a.zomato-order.open { background: #e23744; color: white; }
     a.zomato-order.closed { background: #ccc; color: #555; pointer-events: none; }
+    .admin-login {
+      position: fixed; top: 10px; right: 10px;
+      background: #d35400; color: white;
+      padding: 10px 15px;
+      border-radius: 8px; text-decoration: none;
+      font-weight: bold;
+      z-index: 1000;
+    }
     section {
       padding: 40px 20px; max-width: 1000px; margin: auto;
     }
@@ -54,13 +62,14 @@
     }
     .about img, .menu-item img, .shop-img {
       border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 100%; height: auto;
     }
     .menu-item {
       display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 25px;
     }
     .menu-item img { width: 140px; height: 100px; object-fit: cover; }
-    .modi-promo video {
-      width: 300px; max-width: 100%; border-radius: 10px; margin: 20px auto; display: block;
+    .modi-promo iframe {
+      width: 100%; max-width: 300px; border-radius: 10px; margin: 20px auto; display: block;
     }
     .timings ul { list-style: none; padding: 0; font-size: 1.1em; }
     .timings ul li {
@@ -103,6 +112,7 @@
   </style>
 </head>
 <body>
+  <a href="admin-dashboard.html" class="admin-login">Admin Login</a>
 
   <header class="hero animate__animated animate__fadeInDown">
     <img src="images/LOGO.png" class="logo" alt="Logo">
