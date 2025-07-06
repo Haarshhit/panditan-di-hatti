@@ -1,41 +1,96 @@
+<!-- admin-dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Panditan Di Hatti Admin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.css" />
+  <title>Admin Dashboard – Panditan Di Hatti</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 20px;
+      background: #fffdf6;
     }
-    h1 {
+    header {
+      background: #d35400;
+      color: white;
+      padding: 20px;
       text-align: center;
-      color: #333;
+    }
+    .section {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      font-family: monospace;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #3f51b5;
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .status {
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Panditan Di Hatti Admin Dashboard</h1>
+  <header>
+    <h1>🛠️ Admin Portal – Panditan Di Hatti</h1>
+    <p>Edit site content live here</p>
+  </header>
+
+  <div class="section">
+    <h2>✍️ Edit About Us (about.yml)</h2>
+    <textarea id="aboutContent"></textarea>
+    <button onclick="saveFile('about.yml', 'aboutContent')">Save Changes</button>
+    <div class="status" id="aboutStatus"></div>
+  </div>
+
+  <div class="section">
+    <h2>📰 Edit Banner (banner.yml)</h2>
+    <textarea id="bannerContent"></textarea>
+    <button onclick="saveFile('banner.yml', 'bannerContent')">Save Changes</button>
+    <div class="status" id="bannerStatus"></div>
+  </div>
 
   <script>
-    window.CMS_MANUAL_INIT = true;
-
-    async function loadConfigAndInitCMS() {
-      const response = await fetch('/config.yml');
-      const yamlText = await response.text();
-
-      const config = window.jsyaml.load(yamlText);
-      CMS.init({ config });
+    async function loadFile(filename, elementId) {
+      try {
+        const res = await fetch(`https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/panditan-di-hatti/main/${filename}`);
+        const text = await res.text();
+        document.getElementById(elementId).value = text;
+      } catch (e) {
+        document.getElementById(elementId).value = '⚠️ Error loading file.';
+      }
     }
 
-    loadConfigAndInitCMS();
-  </script>
+    async function saveFile(filename, textareaId) {
+      const content = document.getElementById(textareaId).value;
 
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+      // Replace this with real GitHub commit logic via GitHub API or Netlify Function
+      alert(`📦 Saving ${filename}...\n(You must add GitHub API commit logic here)`);
+
+      document.getElementById(textareaId.replace("Content", "Status")).textContent = "✅ Saved (simulated)";
+    }
+
+    // Load initial data
+    loadFile('about.yml', 'aboutContent');
+    loadFile('banner.yml', 'bannerContent');
+  </script>
 </body>
 </html>
