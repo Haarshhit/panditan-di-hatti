@@ -1,14 +1,3 @@
-backend:
-  name: git-gateway
-  branch: main
-
-media_folder: "images" # where uploaded images go
-public_folder: "/images" # how they’re accessed in the site
-
-media_library:
-  name: uploadcare
-  provider: "uploadcare" # Ensure the provider is specified if required
-
 collections:
   - name: "menu"
     label: "Menu Items"
@@ -32,16 +21,18 @@ collections:
 
   - name: "site_settings"
     label: "Site Settings"
-    file: "content/settings.yml"
-    fields:
-      - { label: "Banner Text", name: "banner_text", widget: "string" }
-      - { label: "Tagline", name: "tagline", widget: "string" }
-      - { label: "About Us Text", name: "about_text", widget: "text" }
-      - { label: "Owner Image", name: "owner_image", widget: "image" }
-      - { label: "Shop Image", name: "shop_image", widget: "image" }
-      - { label: "Modi Video (YouTube Link)", name: "pm_modi_video", widget: "string" }
-      - { label: "Open/Close Times", name: "open_close", widget: "list", fields: [
-          { label: "Day", name: "day", widget: "string" },
-          { label: "Hours", name: "hours", widget: "string" }
-        ] }
-      - { label: "Offer / Sale Text", name: "offer", widget: "string" }
+    files:
+      - file: "content/settings.yml"
+        label: "Site Settings"
+        fields:
+          - { label: "Banner Text", name: "banner_text", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "About Us Text", name: "about_text", widget: "text" }
+          - { label: "Owner Image", name: "owner_image", widget: "image" }
+          - { label: "Shop Image", name: "shop_image", widget: "image" }
+          - { label: "Modi Video (YouTube Link)", name: "pm_modi_video", widget: "string" }
+          - { label: "Open/Close Times", name: "open_close", widget: "list", fields: [
+              { label: "Day", name: "day", widget: "string" },
+              { label: "Hours", name: "hours", widget: "string" }
+            ] }
+          - { label: "Offer / Sale Text", name: "offer", widget: "string" }
