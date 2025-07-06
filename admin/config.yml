@@ -1,9 +1,11 @@
+# ✅ Custom local login – No Netlify Identity used
 backend:
-  name: git-gateway
-  branch: main
+  name: test-repo
 
 media_folder: "images"
 public_folder: "/images"
+
+local_backend: true
 
 collections:
   - name: "reviews"
@@ -24,3 +26,13 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
+
+  - name: "about"
+    label: "About Section"
+    files:
+      - label: "About Us"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
