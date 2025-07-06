@@ -1,19 +1,67 @@
 backend:
   name: auth0
-  site_domain: panditandihatti.netlify.app
+  domain: pandit-di-hatti.us.auth0.com  # ✅ Your Auth0 domain
+  client_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2  # ✅ Your Auth0 app client ID
   base_url: https://panditandihatti.netlify.app
-  client_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2  # replace with your real Auth0 Client ID
-  domain: pandit-di-hatti.us.auth0.com        # replace with your Auth0 domain
+  site_domain: panditandihatti.netlify.app
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: "banner"
+    label: "Banner"
+    files:
+      - label: "Banner Content"
+        name: "banner_content"
+        file: "banner.yml"
+        fields:
+          - { name: "title", label: "Title", widget: "string" }
+          - { name: "tagline", label: "Tagline", widget: "string" }
+          - { name: "image", label: "Banner Image", widget: "image" }
+
+  - name: "about"
+    label: "About Us"
+    file: "about.yml"
+    fields:
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "owner_image", label: "Owner Image", widget: "image" }
+
   - name: "menu"
     label: "Menu Items"
     folder: "content/menu"
     create: true
+    slug: "{{slug}}"
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "description", label: "Description", widget: "text" }
       - { name: "image", label: "Image", widget: "image" }
+
+  - name: "offers"
+    label: "Offers"
+    folder: "content/offers"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "offer_title", label: "Offer Title", widget: "string" }
+      - { name: "details", label: "Details", widget: "text" }
+
+  - name: "reviews"
+    label: "Customer Reviews"
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "name", label: "Customer Name", widget: "string" }
+      - { name: "review", label: "Review", widget: "text" }
+
+  - name: "settings"
+    label: "Site Settings"
+    file: "settings.yml"
+    fields:
+      - { name: "zomato_link", label: "Zomato Order Link", widget: "string" }
+      - { name: "pm_video", label: "PM Modi Video URL", widget: "string" }
+      - { name: "footer_text", label: "Footer Text", widget: "string" }
+      - { name: "meta_title", label: "Meta Title", widget: "string" }
+      - { name: "meta_description", label: "Meta Description", widget: "string" }
+      - { name: "logo", label: "Logo Image", widget: "image" }
