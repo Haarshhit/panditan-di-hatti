@@ -1,159 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f5f7fa;
-        }
-        
-        .dashboard-container {
-            grid-template-columns: 240px 1fr;
-        }
-        
-        .sidebar-link:hover {
-            background-color: rgba(79, 70, 229, 0.1);
-        }
-        
-        .active-link {
-            background-color: rgba(79, 70, 229, 0.1);
-            color: #4f46e5;
-        }
-        
-        .card-shadow {
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Admin Login – Panditan Di Hatti</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffcc70, #ff8c00);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #ff6600;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      background-color: #ff6600;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #e65c00;
+    }
+
+    .link {
+      margin-top: 15px;
+      display: block;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<body class="min-h-screen">
-    <div class="dashboard-container grid h-screen">
-        <!-- Sidebar -->
-        <div class="bg-white border-r border-gray-200 p-4">
-            <div class="mb-8">
-                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0e922297-a711-4ad0-97ba-6e9290beb59a.png" alt="Company logo with modern typography in indigo color" class="h-8" />
-            </div>
-            <nav>
-                <ul class="space-y-2">
-                    <li>
-                        <a href="#" class="sidebar-link active-link flex items-center space-x-3 py-2 px-3 rounded-lg text-sm font-medium">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="sidebar-link flex items-center space-x-3 py-2 px-3 rounded-lg text-sm font-medium">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
-                            <span>Users</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="reviews/" class="sidebar-link flex items-center space-x-3 py-2 px-3 rounded-lg text-sm font-medium">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                            <span>Reviews</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="settings/" class="sidebar-link flex items-center space-x-3 py-2 px-3 rounded-lg text-sm font-medium">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg>
-                            <span>Settings</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+<body>
+  <div class="box">
+    <h2>Admin Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <input type="submit" value="Login" onclick="login()" />
+    <a class="link" href="reset-password.html">Forgot Password?</a>
+  </div>
 
-        <!-- Main Content -->
-        <div class="p-6 overflow-y-auto">
-            <header class="flex justify-between items-center mb-8">
-                <h1 class="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
-                <div class="flex items-center space-x-4">
-                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        Create New
-                    </button>
-                    <div class="relative">
-                        <div class="flex items-center space-x-2 cursor-pointer">
-                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f3dab6b8-70a0-4ce1-bdf8-9d4cab3f1813.png" alt="User profile picture showing a professional headshot" class="h-8 w-8 rounded-full" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4c5915ff-e987-4fbe-8f1f-d5af133ae808.png'" />
-                            <span class="text-sm font-medium">Admin</span>
-                        </div>
-                    </div>
-                </div>
-            </header>
+  <script>
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const storedPass = localStorage.getItem("adminPassword") || "3246";
 
-            <!-- Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white p-6 rounded-lg card-shadow">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-sm font-medium text-gray-500">Total Users</p>
-                            <h3 class="text-2xl font-bold mt-1">1,248</h3>
-                        </div>
-                        <div class="bg-indigo-100 p-3 rounded-full">
-                            <svg class="h-6 w-6 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-lg card-shadow">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-sm font-medium text-gray-500">Active Reviews</p>
-                            <h3 class="text-2xl font-bold mt-1">347</h3>
-                        </div>
-                        <div class="bg-green-100 p-3 rounded-full">
-                            <svg class="h-6 w-6 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-lg card-shadow">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-sm font-medium text-gray-500">System Status</p>
-                            <h3 class="text-2xl font-bold mt-1 text-green-600">Online</h3>
-                        </div>
-                        <div class="bg-blue-100 p-3 rounded-full">
-                            <svg class="h-6 w-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recent Activity -->
-            <div class="bg-white p-6 rounded-lg card-shadow">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-lg font-semibold">Recent Activity</h2>
-                    <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800">View All</a>
-                </div>
-                <div class="space-y-4">
-                    <div class="flex items-start">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/31878de0-3338-476f-87fa-97ca8eafc85e.png" alt="User avatar" class="h-10 w-10 rounded-full mr-4" />
-                        <div>
-                            <p class="font-medium">John Doe created a new review</p>
-                            <p class="text-sm text-gray-500">2 hours ago</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f62637c4-21cc-4c38-9bb9-e9e23ef17c08.png" alt="User avatar" class="h-10 w-10 rounded-full mr-4" />
-                        <div>
-                            <p class="font-medium">System update completed</p>
-                            <p class="text-sm text-gray-500">5 hours ago</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c33fb4b4-34a0-47f1-9151-b77c2aa876d3.png" alt="User avatar" class="h-10 w-10 rounded-full mr-4" />
-                        <div>
-                            <p class="font-medium">Settings updated by Jane Smith</p>
-                            <p class="text-sm text-gray-500">1 day ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      if (user === "Haarshhit" && pass === storedPass) {
+        window.location.href = "/admin/";
+      } else {
+        alert("Invalid credentials.");
+      }
+    }
+  </script>
 </body>
 </html>
-
