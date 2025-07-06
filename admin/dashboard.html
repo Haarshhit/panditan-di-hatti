@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Panditan Di Hatti CMS</title>
   <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.css" />
 </head>
 <body>
   <script>
+    // Manual initialization to avoid auto Git login popup
     window.CMS_MANUAL_INIT = true;
     CMS.init();
   </script>
