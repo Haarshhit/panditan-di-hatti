@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Panditan Di Hatti</title>
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/LOGO.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&display=swap');
     body {
@@ -13,13 +13,11 @@
       margin: 0; padding: 0;
       background: #fffdf6; color: #333;
     }
-    /* Header & Banner */
     header.hero {
       background: linear-gradient(120deg, #ffc107, #ff9800);
       padding: 70px 20px 40px;
       text-align: center;
       position: relative;
-      animation: fadeIn 1.5s ease-in-out;
     }
     header.hero img.logo {
       position: absolute; top: 15px; left: 15px;
@@ -45,7 +43,6 @@
     }
     a.zomato-order.open { background: #e23744; color: white; }
     a.zomato-order.closed { background: #ccc; color: #555; pointer-events: none; }
-    /* Sections */
     section {
       padding: 40px 20px; max-width: 1000px; margin: auto;
     }
@@ -55,36 +52,59 @@
       font-family: 'Playfair Display', serif;
       margin-bottom: 15px;
     }
-    /* About */
-    .about img { max-width:100%; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-top:15px; }
-    /* Menu */
-    .menu-item { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom:25px; }
-    .menu-item img { width:140px; height:100px; object-fit:cover; border-radius:10px; }
-    /* PM Video */
-    .modi-promo { text-align:center; }
-    .modi-promo video { width:300px; max-width:100%; border-radius:10px; margin:20px auto; display:block; }
-    /* Timings */
-    .timings ul { list-style:none; padding:0; font-size:1.1em; }
-    .timings ul li { padding:8px; border-radius:6px; margin:5px 0; background:#fff0db; }
-    .timings ul li.today { background:#ffd54f; font-weight:bold; animation:pulse 1.2s infinite; }
-    /* Reviews */
-    .reviews .review { background:#fffaf0; padding:15px; margin-bottom:20px; border-radius:8px; box-shadow:0 3px 8px rgba(0,0,0,0.05); }
-    .review strong { color:#d35400; }
-    .review-link { text-align:center; margin:30px; }
-    .review-link a { background:#3f51b5; color:white; padding:10px 20px; text-decoration:none; border-radius:8px; font-weight:bold; }
-    /* Contact & Shop Image */
-    .contact iframe { width:100%; height:300px; border:0; border-radius:10px; margin-top:20px; }
-    .shop-img { display:block; margin:30px auto; max-width:1000px; width:100%; border-radius:12px; }
-    /* Footer */
-    footer { background:#ffe0b2; text-align:center; padding:20px; color:#333; }
-    /* Animations */
-    @keyframes fadeIn { 0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);} }
-    @keyframes pulse {0%{background-color:#ffeb3b;}50%{background-color:#fff176;}100%{background-color:#ffeb3b;}}
+    .about img, .menu-item img, .shop-img {
+      border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .menu-item {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 25px;
+    }
+    .menu-item img { width: 140px; height: 100px; object-fit: cover; }
+    .modi-promo video {
+      width: 300px; max-width: 100%; border-radius: 10px; margin: 20px auto; display: block;
+    }
+    .timings ul { list-style: none; padding: 0; font-size: 1.1em; }
+    .timings ul li {
+      padding: 8px; border-radius: 6px; margin: 5px 0; background: #fff0db;
+    }
+    .timings ul li.today {
+      background: #ffd54f; font-weight: bold; animation: pulse 1.2s infinite;
+    }
+    .reviews .review {
+      background: #fffaf0; padding: 15px; margin-bottom: 20px;
+      border-radius: 8px; box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+    .review strong { color: #d35400; }
+    .review-link { text-align: center; margin: 30px; }
+    .review-link a {
+      background: #3f51b5; color: white; padding: 10px 20px;
+      text-decoration: none; border-radius: 8px; font-weight: bold;
+    }
+    .contact iframe {
+      width: 100%; height: 300px; border: 0;
+      border-radius: 10px; margin-top: 20px;
+    }
+    .shop-img {
+      display: block; margin: 30px auto; max-width: 1000px; width: 100%;
+    }
+    .offers-banner {
+      background: #ffecb3; padding: 20px; margin: 30px auto;
+      border-radius: 10px; font-size: 1.3em;
+      font-weight: bold; color: #b14520;
+      text-align: center; animation: flash 2s infinite;
+    }
+    footer {
+      background: #ffe0b2; text-align: center; padding: 20px; color: #333;
+    }
+    @keyframes pulse {
+      0% { background-color: #ffeb3b; }
+      50% { background-color: #fff176; }
+      100% { background-color: #ffeb3b; }
+    }
   </style>
 </head>
 <body>
 
-  <header class="hero">
+  <header class="hero animate__animated animate__fadeInDown">
     <img src="images/LOGO.png" class="logo" alt="Logo">
     <h1>Panditan Di Hatti</h1>
     <p class="tagline">Where Tradition Meets Taste — Since 1980 in Hamirpur (Anu), Himachal Pradesh</p>
@@ -92,7 +112,11 @@
     <a id="zomatoBtn" class="zomato-order" target="_blank">Order on Zomato</a>
   </header>
 
-  <section class="about">
+  <div class="offers-banner animate__animated animate__flash">
+    🎉 Today's Special Offer – Get 10% off on Besan Barfi & Samosa this weekend!
+  </div>
+
+  <section class="about animate__animated animate__fadeInUp">
     <h2>About Us</h2>
     <p>
       Panditan Di Hatti is a legendary sweets and snacks shop near PG Degree College in Hamirpur (Anu), Himachal Pradesh.
@@ -102,41 +126,34 @@
     <img src="images/OWNER.png" alt="Owner Photo">
   </section>
 
-  <section class="menu">
+  <section class="menu animate__animated animate__zoomIn">
     <h2>Our Specialties</h2>
-    <div class="menu-item">
-      <img src="images/BESAN BARFI.png" alt="Besan Barfi">
+    <div class="menu-item"><img src="images/BESAN BARFI.png" alt="Besan Barfi">
       <div><strong>⭐ Besan Barfi:</strong> Famous all over Himachal. Soft, golden, full of rich flavor.</div>
     </div>
-    <div class="menu-item">
-      <img src="images/Motichoor Laddoo.jpg" alt="Motichoor Laddoo">
+    <div class="menu-item"><img src="images/Motichoor Laddoo.jpg" alt="Motichoor Laddoo">
       <div><strong>Motichoor Laddoo:</strong> Spherical joy of every celebration!</div>
     </div>
-    <div class="menu-item">
-      <img src="images/Samosa.jpg" alt="Samosa">
+    <div class="menu-item"><img src="images/Samosa.jpg" alt="Samosa">
       <div><strong>Samosa:</strong> Crispy, spicy triangles of delight.</div>
     </div>
-    <div class="menu-item">
-      <img src="images/Rasgulla.jpeg" alt="Rasgulla">
+    <div class="menu-item"><img src="images/Rasgulla.jpeg" alt="Rasgulla">
       <div><strong>Rasgulla:</strong> Soft, spongy, syrupy sweet.</div>
     </div>
-    <div class="menu-item">
-      <img src="images/Paneer Pakoda.jpeg" alt="Paneer Pakoda">
+    <div class="menu-item"><img src="images/Paneer Pakoda.jpeg" alt="Paneer Pakoda">
       <div><strong>Paneer Pakoda:</strong> Fried cheese perfection.</div>
     </div>
   </section>
 
- <section class="modi-promo">
-  <h2>PM Modi Featured Us!</h2>
-  <p>PM Narendra Modi’s fan pages featured our <strong>Besan Barfi</strong> — and the love from India followed! 🇮🇳</p>
-  <div class="modi-video">
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/QOZa-VSTyek?si=UAj5cmo9g4x3ipdn"
-      title="PM Modi YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-  </div>
-</section>
+  <section class="modi-promo animate__animated animate__bounceIn">
+    <h2>PM Modi Featured Us!</h2>
+    <p>PM Narendra Modi’s fan pages featured our <strong>Besan Barfi</strong> — and the love from India followed! 🇮🇳</p>
+    <div class="modi-video">
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/QOZa-VSTyek" title="PM Modi YouTube Video" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
 
-  <section class="timings">
+  <section class="timings animate__animated animate__fadeInLeft">
     <h2>🕒 Opening Hours</h2>
     <ul id="timing-list">
       <li>Sunday: <span>08:00 AM – 08:30 PM</span></li>
@@ -149,7 +166,7 @@
     </ul>
   </section>
 
-  <section class="reviews">
+  <section class="reviews animate__animated animate__fadeInRight">
     <h2>⭐ Customer Reviews</h2>
     <div class="review"><strong>Ramesh:</strong> "Best besan barfi I’ve ever had! Must try!"</div>
     <div class="review"><strong>Priya:</strong> "Pure, tasty local Himachali flavors – I love it!"</div>
@@ -159,31 +176,25 @@
     </div>
   </section>
 
-  <section class="contact">
+  <section class="contact animate__animated animate__fadeInUp">
     <h2>Visit Us</h2>
-    <p>
-      📍 Near PG Degree College, Anu Market, Hamirpur (Anu), Himachal Pradesh<br>
-      ⭐ Rated 4.5★ (1,250+ reviews)
-    </p>
+    <p>📍 Near PG Degree College, Anu Market, Hamirpur (Anu), Himachal Pradesh<br>
+    ⭐ Rated 4.5★ (1,250+ reviews)</p>
     <iframe src="https://www.google.com/maps?q=31.750798576238175,76.51580599973934&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
   </section>
 
-  <img src="images/SHOP.avif" alt="Shop Front" class="shop-img">
+  <img src="images/SHOP.avif" alt="Shop Front" class="shop-img animate__animated animate__zoomIn">
 
   <footer>
     <p>© 2025 Panditan Di Hatti | Website designed by Harshit | Licensed under MIT</p>
   </footer>
 
   <script>
-    // Highlight today's hours
     const today = new Date().getDay();
     document.querySelectorAll('#timing-list li')[today].classList.add('today');
-
-    // Live open/closed status + Zomato button
     const now = new Date();
-    const totalMins = now.getHours()*60 + now.getMinutes();
-    const openMins = 8*60, closeMins = 20*60 + 30;
-    const isOpen = totalMins >= openMins && totalMins <= closeMins;
+    const totalMins = now.getHours() * 60 + now.getMinutes();
+    const isOpen = totalMins >= 480 && totalMins <= 1230;
     document.getElementById('openStatus').textContent = isOpen ? '✅ We’re Open Now' : '❌ We’re Closed Now';
     const btn = document.getElementById('zomatoBtn');
     btn.classList.add(isOpen ? 'open' : 'closed');
