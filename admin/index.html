@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Panditan Di Hatti Admin</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <script>
-      const storedPassword = localStorage.getItem('adminPassword');
-      if (!storedPassword) {
-        window.location.href = "/admin/login.html";
-      }
-    </script>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Panditan Di Hatti Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <script>
+    const password = prompt("Enter Admin Password:");
+    if (password !== "3246") {
+      alert("❌ Incorrect password. Access denied.");
+      window.location.href = "/";
+    }
+  </script>
 
-    <!-- Netlify CMS script -->
-    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
-  </body>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+</body>
 </html>
