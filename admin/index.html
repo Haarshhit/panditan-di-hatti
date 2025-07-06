@@ -175,12 +175,6 @@
       <p>Enter the admin password to access the dashboard</p>
       
       <div class="input-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email..."
-               autocomplete="email" required />
-      </div>
-      
-      <div class="input-group">
         <label for="admin-pass">Password</label>
         <div class="password-container">
           <input type="password" id="admin-pass" placeholder="Enter password..." 
@@ -207,10 +201,6 @@
         
         <div id="recovery-message"></div>
       </div>
-      
-      <p style="margin-top:1rem;text-align:center;">
-        <a href="#" onclick="toggleRecoveryBox()">Forgot password?</a>
-      </p>
       
       <footer>
         Panditan Di Hatti &copy; <span id="current-year"></span>
@@ -288,12 +278,11 @@
     }
     
     function checkPass() {
-      const email = document.getElementById('email').value.trim();
       const password = document.getElementById('admin-pass').value.trim();
       const loginBtn = document.getElementById('login-btn');
       
-      if (!email || !password) {
-        showMessage(email ? 'Please enter a password' : 'Please enter your email');
+      if (!password) {
+        showMessage('Please enter a password');
         return;
       }
       
@@ -356,7 +345,7 @@
           document.getElementById('admin-pass').value = '';
         }, 30000); // 30-second timeout
       } else {
-        showMessage(`Invalid email or password. ${remainingAttempts > 0 ? `${remainingAttempts} attempts remaining.` : 'Last attempt.'}`);
+        showMessage(`Invalid password. ${remainingAttempts > 0 ? `${remainingAttempts} attempts remaining.` : 'Last attempt.'}`);
       }
       
       loginBtn.textContent = 'Login';
