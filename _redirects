@@ -1,5 +1,3 @@
-# 🔁 Fix identity login redirect to /admin
 /recovery_token=:token  /admin  302!
-
-# ⚙️ Required for single page apps (SPA)
+/admin/*  /admin/index.html  200
 /*  /index.html  200
