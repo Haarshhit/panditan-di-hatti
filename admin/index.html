@@ -1,24 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Panditan Di Hatti Admin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    // Show password prompt early, but don’t block the CMS load
-    window.onload = function () {
-      const pass = prompt("🔐 Enter password to access Admin:");
-      if (pass !== "3246") {
-        document.body.innerHTML = "<h2 style='color:red;'>❌ Access Denied. Wrong Password.</h2>";
-      } else {
-        const script = document.createElement("script");
-        script.src = "https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js";
-        document.body.appendChild(script);
-      }
-    };
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fffdf6;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+    .hidden { display: none; }
+    .center {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    input[type="password"] {
+      padding: 10px;
+      width: 100%;
+      margin-top: 1rem;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      background: #ffc107;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ff9800;
+    }
+  </style>
 </head>
 <body>
-  <noscript>Please enable JavaScript to access admin panel.</noscript>
+  <div class="center" id="login-box">
+    <h2>🔐 Admin Login</h2>
+    <p>Enter the admin password:</p>
+    <input type="password" id="admin-pass" placeholder="Enter password..." />
+    <button onclick="checkPass()">Login</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+
+  <div id="cms-container" class="hidden"></div>
+
+  <script>
+    function checkPass() {
+      const password = document.getElementById('admin-pass').value;
+      const correct = '3246';
+
+      if (password === correct) {
+        document.getElementById('login-box').style.display = 'none';
+        document.getElementById('cms-container').classList.remove('hidden');
+
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js';
+        script.onerror = () => {
+          document.getElementById('cms-container').innerHTML = '<p style="color:red;">❌ Failed to load CMS script</p>';
+        };
+        document.body.appendChild(script);
+      } else {
+        document.getElementById('error').innerText = '❌ Wrong password. Try again.';
+      }
+    }
+  </script>
+
+  <noscript>
+    <div style="text-align:center;padding:2rem;">
+      Please enable JavaScript to use the admin panel.
+    </div>
+  </noscript>
 </body>
 </html>
