@@ -1,201 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Panditan Di Hatti Admin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Secure admin portal for Panditan Di Hatti">
-  <script src="https://cdn.auth0.com/js/auth0/9.15/auth0.min.js"></script>
-  <link rel="preconnect" href="https://unpkg.com">
-  <style>
-    :root {
-      --primary-color: #ffc107;
-      --primary-hover: #ff9800;
-      --error-color: #d32f2f;
-      --success-color: #388e3c;
-      --text-color: #333;
-      --bg-color: #fffdf6;
-      --border-radius: 4px;
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg-color);
-      margin: 0;
-      padding: 0;
-      color: var(--text-color);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .hidden { 
-      display: none !important; 
-    }
-    
-    .container {
-      width: 100%;
-      max-width: 500px;
-      padding: 2rem;
-    }
-    
-    .center {
-      text-align: center;
-      background: white;
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+backend:
+  name: git-gateway
+  branch: main
 
-    h2 {
-      margin-top: 0;
-      color: #5d4037;
-    }
-    
-    button {
-      width: 100%;
-      padding: 12px;
-      background: var(--primary-color);
-      border: none;
-      border-radius: var(--border-radius);
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    
-    button:hover {
-      background: var(--primary-hover);
-    }
-    
-    #message {
-      margin-top: 1rem;
-      padding: 0.75rem;
-      border-radius: var(--border-radius);
-    }
-    
-    .error {
-      background-color: rgba(211, 47, 47, 0.1);
-      color: var(--error-color);
-    }
-    
-    .success {
-      background-color: rgba(56, 142, 60, 0.1);
-      color: var(--success-color);
-    }
-    
-    .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--primary-color);
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    footer {
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      color: #777;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div id="login-box" class="center">
-      <h2>🔐 Admin Login</h2>
-      <p>Click the button below to log in with Auth0</p>
-      
-      <button id="login-btn" onclick="login()">Login with Auth0</button>
-      
-      <div id="message"></div>
-      
-      <footer>
-        Panditan Di Hatti &copy; <span id="current-year"></span>
-      </footer>
-    </div>
+media_folder: "images"
+public_folder: "/images"
 
-    <div id="cms-container" class="hidden center">
-      <div class="loader"></div>
-      <p>Loading Admin Dashboard...</p>
-    </div>
-  </div>
+collections:
+  - name: "menu"
+    label: "Menu Items"
+    folder: "content/menu"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
 
-  <script>
-    // Set current year in footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+  - name: "reviews"
+    label: "Customer Reviews"
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Reviewer", name: "reviewer", widget: "string" }
+      - { label: "Review", name: "review", widget: "text" }
 
-    // Initialize Auth0
-    const auth0 = new Auth0({
-      domain: 'YOUR_AUTH0_DOMAIN',  // Replace with your Auth0 domain
-      clientID: 'YOUR_AUTH0_CLIENT_ID',  // Replace with your Auth0 client ID
-      redirectUri: window.location.origin + '/admin/',  // Redirect after login
-      responseType: 'token',
-      scope: 'openid profile email'
-    });
-
-    function login() {
-      auth0.authorize();
-    }
-
-    // Handle authentication callback
-    window.addEventListener('load', function() {
-      const hash = window.location.hash;
-      if (hash) {
-        auth0.parseHash({ hash }, function(err, authResult) {
-          if (authResult && authResult.accessToken) {
-            // Successful login
-            handleSuccess();
-          } else if (err) {
-            showMessage('Error: ' + err.message, true);
-          }
-        });
-      }
-    });
-
-    function handleSuccess() {
-      document.getElementById('login-box').classList.add('hidden');
-      document.getElementById('cms-container').classList.remove('hidden');
-      
-      // Load Netlify CMS
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js';
-      script.onload = () => {
-        document.getElementById('cms-container').innerHTML = '<p>Redirecting to dashboard...</p>';
-      };
-      script.onerror = () => {
-        document.getElementById('cms-container').innerHTML = `
-          <p style="color: var(--error-color);">
-            Failed to load CMS script. Please refresh the page or check your connection.
-          </p>
-          <button onclick="window.location.reload()">Try Again</button>
-        `;
-      };
-      document.body.appendChild(script);
-    }
-
-    function showMessage(text, isError = true) {
-      const messageDiv = document.getElementById('message');
-      messageDiv.textContent = text;
-      messageDiv.className = isError ? 'error' : 'success';
-    }
-  </script>
-
-  <noscript>
-    <div class="center" style="color: var(--error-color);">
-      JavaScript is required to use the admin panel. Please enable JavaScript in your browser settings.
-    </div>
-  </noscript>
-</body>
-</html>
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General"
+        name: "general"
+        file: "content/settings.yml"
+        fields:
+          - { label: "Shop Title", name: "shop_title", widget: "string" }
+          - { label: "Tagline", name: "shop_tagline", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "About Us Text", name: "about_content", widget: "text" }
+          - { label: "PM Modi Video (YouTube link)", name: "pm_modi_video", widget: "string" }
+          - { label: "Open Time", name: "open_time", widget: "string" }
+          - { label: "Close Time", name: "close_time", widget: "string" }
+          - { label: "Offers / Sales", name: "offers", widget: "text" }
