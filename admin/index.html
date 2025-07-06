@@ -115,6 +115,23 @@
       color: var(--success-color);
     }
     
+    .secondary-btn {
+      width: 100%;
+      padding: 12px;
+      background: #f1f1f1;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 0.5rem;
+    }
+    
+    .secondary-btn:hover {
+      background: #e1e1e1;
+    }
+    
     .loader {
       border: 4px solid #f3f3f3;
       border-top: 4px solid var(--primary-color);
@@ -176,6 +193,25 @@
       
       <div id="message"></div>
       
+      <div id="recovery-box" class="center hidden">
+        <h2>🔑 Account Recovery</h2>
+        <p>Enter your email to receive password reset instructions</p>
+        
+        <div class="input-group">
+          <label for="recovery-email">Email</label>
+          <input type="email" id="recovery-email" placeholder="Enter your email..." required />
+        </div>
+        
+        <button id="recovery-btn" onclick="sendRecovery()">Send recovery email</button>
+        <button class="secondary-btn" onclick="toggleRecoveryBox()">Never mind</button>
+        
+        <div id="recovery-message"></div>
+      </div>
+      
+      <p style="margin-top:1rem;text-align:center;">
+        <a href="#" onclick="toggleRecoveryBox()">Forgot password?</a>
+      </p>
+      
       <footer>
         Panditan Di Hatti &copy; <span id="current-year"></span>
       </footer>
@@ -212,6 +248,43 @@
       const messageDiv = document.getElementById('message');
       messageDiv.textContent = text;
       messageDiv.className = isError ? 'error' : 'success';
+    }
+    
+    function toggleRecoveryBox() {
+      const loginBox = document.getElementById('login-box');
+      const recoveryBox = document.getElementById('recovery-box');
+      
+      if (recoveryBox.classList.contains('hidden')) {
+        loginBox.classList.add('hidden');
+        recoveryBox.classList.remove('hidden');
+      } else {
+        loginBox.classList.remove('hidden');
+        recoveryBox.classList.add('hidden');
+      }
+      document.getElementById('message').textContent = '';
+    }
+    
+    function sendRecovery() {
+      const email = document.getElementById('recovery-email').value.trim();
+      const recoveryBtn = document.getElementById('recovery-btn');
+      const messageDiv = document.getElementById('recovery-message');
+      
+      if (!email) {
+        messageDiv.textContent = 'Please enter your email';
+        messageDiv.className = 'error';
+        return;
+      }
+      
+      recoveryBtn.disabled = true;
+      recoveryBtn.textContent = 'Sending...';
+      
+      // Simulate sending recovery email (replace with actual Netlify Identity call)
+      setTimeout(() => {
+        messageDiv.textContent = `Recovery email sent to ${email}`;
+        messageDiv.className = 'success';
+        recoveryBtn.disabled = false;
+        recoveryBtn.textContent = 'Send recovery email';
+      }, 1500);
     }
     
     function checkPass() {
