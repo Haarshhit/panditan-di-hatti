@@ -7,6 +7,7 @@ public_folder: "/images" # how they’re accessed in the site
 
 media_library:
   name: uploadcare
+  provider: "uploadcare" # Ensure the provider is specified if required
 
 collections:
   - name: "menu"
@@ -44,4 +45,3 @@ collections:
           { label: "Hours", name: "hours", widget: "string" }
         ] }
       - { label: "Offer / Sale Text", name: "offer", widget: "string" }
-
