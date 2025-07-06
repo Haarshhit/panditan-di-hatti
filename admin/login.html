@@ -84,14 +84,14 @@
 
   <script>
     function login(event) {
-      event.preventDefault(); // Prevent form reload
+      event.preventDefault();
 
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
       const storedPassword = localStorage.getItem('adminPassword') || '3246';
 
       if (username === 'Haarshhit' && password === storedPassword) {
-        window.location.href = "/admin/#/";
+        window.location.href = "/admin/index.html#/";
       } else {
         alert("❌ Invalid username or password.");
       }
