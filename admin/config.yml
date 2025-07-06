@@ -1,51 +1,32 @@
 backend:
-  name: git-gateway
-  branch: main  # Ensure this branch exists in your GitHub repository
+  name: github
+  repo: Haarshhit/panditan-di-hatti
+  branch: main
+  auth_type: implicit
+  app_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2
+  base_url: https://pandit-di-hatti.us.auth0.com
+  auth_endpoint: authorize
 
-media_folder: "images"  # Folder for uploaded media files
-public_folder: "/images"  # Public URL for media files
+media_folder: "images"
+public_folder: "/images"
 
 collections:
   - name: "menu"
     label: "Menu Items"
-    folder: "content/menu"  # Folder where menu items are stored
-    create: true  # Allow creating new menu items
-    slug: "{{slug}}"  # Slug format for menu items
+    folder: "content/menu"
+    create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
 
   - name: "reviews"
     label: "Customer Reviews"
-    folder: "content/reviews"  # Folder where reviews are stored
-    create: true  # Allow creating new reviews
-    slug: "{{slug}}"  # Slug format for reviews
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Reviewer Name", name: "name", widget: "string" }
+      - { label: "Reviewer", name: "reviewer", widget: "string" }
       - { label: "Review", name: "review", widget: "text" }
-
-  - name: "settings"
-    label: "Website Settings"
-    files:
-      - file: "content/settings.yml"  # File for global settings
-        label: "Global Settings"
-        name: "global"
-        fields:
-          - { label: "Shop Title", name: "shop_title", widget: "string" }
-          - { label: "Tagline", name: "shop_tagline", widget: "string" }
-          - { label: "About Us", name: "about_content", widget: "text" }
-          - { label: "Owner Image", name: "owner_image", widget: "image" }
-          - { label: "Shop Image", name: "shop_image", widget: "image" }
-          - { label: "Logo", name: "logo_image", widget: "image" }
-          - { label: "PM Modi Video Link", name: "pm_modi_video", widget: "string", default: "https://www.youtube.com/embed/QOZa-VSTyek" }
-          - label: "Opening Hours"
-            name: "opening_hours"
-            widget: "list"
-            fields:
-              - { label: "Day", name: "day", widget: "string" }
-              - { label: "Hours", name: "hours", widget: "string" }
-          - { label: "SEO Title", name: "seo_title", widget: "string" }
-          - { label: "SEO Description", name: "seo_description", widget: "text" }
-          - { label: "Offers (optional)", name: "offers", widget: "string", required: false }
