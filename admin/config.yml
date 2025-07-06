@@ -7,48 +7,33 @@ public_folder: "/images"
 
 collections:
   - name: "banner"
-    label: "Banner Section"
+    label: "Banner"
     files:
       - file: "banner.yml"
-        label: "Banner"
+        label: "Banner Content"
         name: "banner"
         fields:
-          - { label: "Heading", name: "heading", widget: "string" }
-          - { label: "Subheading", name: "subheading", widget: "string" }
-          - { label: "Banner Image", name: "image", widget: "image" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
 
   - name: "about"
-    label: "About Us"
+    label: "About Section"
     files:
       - file: "about.yml"
-        label: "About"
+        label: "About Info"
         name: "about"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
           - { label: "Owner Image", name: "owner_image", widget: "image" }
 
-  - name: "settings"
-    label: "Settings"
-    files:
-      - file: "settings.yml"
-        label: "Site Settings"
-        name: "settings"
-        fields:
-          - { label: "Site Title", name: "site_title", widget: "string" }
-          - { label: "Tagline", name: "tagline", widget: "string" }
-          - { label: "Favicon", name: "favicon", widget: "image" }
-          - { label: "Zomato Link", name: "zomato_link", widget: "string" }
-
   - name: "offers"
-    label: "Offers"
+    label: "Offers & Discounts"
     folder: "content/offers"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Details", name: "details", widget: "text" }
 
   - name: "menu"
     label: "Menu Items"
@@ -56,9 +41,8 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Item Name", name: "title", widget: "string" }
+      - { label: "Name", name: "name", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
 
   - name: "reviews"
@@ -67,5 +51,36 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Reviewer Name", name: "title", widget: "string" }
-      - { label: "Review", name: "body", widget: "text" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Review", name: "review", widget: "text" }
+
+  - name: "settings"
+    label: "Website Settings"
+    files:
+      - file: "settings.yml"
+        label: "Basic Settings"
+        name: "settings"
+        fields:
+          - { label: "Meta Title", name: "meta_title", widget: "string" }
+          - { label: "Meta Description", name: "meta_description", widget: "text" }
+          - { label: "Zomato Link", name: "zomato_url", widget: "string" }
+          - { label: "Open Time (Minutes)", name: "open_time", widget: "number" }
+          - { label: "Close Time (Minutes)", name: "close_time", widget: "number" }
+
+  - name: "video"
+    label: "PM Modi Video"
+    files:
+      - file: "video.yml"
+        label: "Video Section"
+        name: "video"
+        fields:
+          - { label: "YouTube Link", name: "youtube", widget: "string" }
+
+  - name: "footer"
+    label: "Footer"
+    files:
+      - file: "footer.yml"
+        label: "Footer Text"
+        name: "footer"
+        fields:
+          - { label: "Footer Content", name: "footer_text", widget: "text" }
