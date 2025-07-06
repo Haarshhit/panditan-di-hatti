@@ -12,7 +12,7 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Sweet Name", name: "title", widget: "string" }
+      - { label: "Name", name: "name", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
@@ -27,19 +27,26 @@ collections:
       - { label: "Review", name: "review", widget: "text" }
 
   - name: "settings"
-    label: "Site Settings"
-    file: "content/settings.yml"
-    fields:
-      - { label: "Banner Text", name: "banner_text", widget: "string" }
-      - { label: "Tagline", name: "tagline", widget: "string" }
-      - { label: "About Us Text", name: "about_us", widget: "text" }
-      - { label: "Owner Image", name: "owner_image", widget: "image" }
-      - { label: "Shop Image", name: "shop_image", widget: "image" }
-      - { label: "PM Modi YouTube Link", name: "pm_modi_video", widget: "string" }
-      - { label: "Offer/Discount", name: "offer_text", widget: "string" }
-      - label: "Open/Close Timings"
-        name: "open_close"
-        widget: "list"
+    label: "Website Settings"
+    files:
+      - file: "content/settings.yml"
+        label: "Global Settings"
+        name: "global"
         fields:
-          - { label: "Day", name: "day", widget: "string" }
-          - { label: "Hours", name: "hours", widget: "string" }
+          - { label: "Shop Title", name: "shop_title", widget: "string" }
+          - { label: "Tagline", name: "shop_tagline", widget: "string" }
+          - { label: "About Us", name: "about_content", widget: "text" }
+          - { label: "Owner Image", name: "owner_image", widget: "image" }
+          - { label: "Shop Image", name: "shop_image", widget: "image" }
+          - { label: "Logo", name: "logo_image", widget: "image" }
+          - { label: "PM Modi Video Link", name: "pm_modi_video", widget: "string", default: "https://www.youtube.com/embed/QOZa-VSTyek" }
+          - label: "Opening Hours"
+            name: "opening_hours"
+            widget: "list"
+            fields:
+              - { label: "Day", name: "day", widget: "string" }
+              - { label: "Hours", name: "hours", widget: "string" }
+          - { label: "SEO Title", name: "seo_title", widget: "string" }
+          - { label: "SEO Description", name: "seo_description", widget: "text" }
+          - { label: "Offers (optional)", name: "offers", widget: "string", required: false }
+
