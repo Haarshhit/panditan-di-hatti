@@ -1,98 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
   <title>Admin Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ffcc70, #ff8c00);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .login-box {
-      background: #fff;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-    }
-
-    h2 {
-      color: #ff6600;
-      margin-bottom: 20px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      background-color: #ff6600;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #e65c00;
-    }
-
-    .link {
-      margin-top: 15px;
-      display: block;
-      color: #555;
-      font-size: 14px;
-      text-decoration: none;
-    }
-
-    .link:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-  <div class="login-box">
-    <h2>Admin Login</h2>
-    <input type="text" id="username" placeholder="Username" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-    <a class="link" href="reset-password.html">Forgot Password?</a>
-  </div>
+  <h2>Login</h2>
+  <button id="login">Login with Auth0</button>
 
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
   <script>
-    function login() {
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value.trim();
+    const auth0 = await createAuth0Client({
+      domain: "pandit-di-hatti.us.auth0.com",
+      client_id: "9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2",
+      redirect_uri: window.location.origin + "/admin/"
+    });
 
-      const correctUsername = "Haarshhit";
-      const storedPassword = localStorage.getItem("adminPassword") || "3246";
-
-      if (username === correctUsername && password === storedPassword) {
-        // ✅ Store password so CMS will let us in
-        localStorage.setItem("adminPassword", password);
-        window.location.href = "/admin/index.html#/";
-      } else {
-        alert("❌ Invalid username or password.");
-      }
-    }
+    document.getElementById("login").onclick = async () => {
+      await auth0.loginWithRedirect();
+    };
   </script>
 </body>
 </html>
