@@ -1,34 +1,44 @@
 backend:
-  name: auth0
-  domain: pandit-di-hatti.us.auth0.com
-  client_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2
-  base_url: https://panditandihatti.netlify.app
-  site_domain: panditandihatti.netlify.app
+  name: git-gateway
+  branch: main
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "images"
+public_folder: "/images"
 
 collections:
-  - name: "banner"
-    label: "Banner"
+  - name: "settings"
+    label: "Site Settings"
     files:
-      - label: "Banner Content"
-        name: "banner_content"
+      - label: "Banner"
+        name: "banner"
         file: "banner.yml"
         fields:
-          - { name: "title", label: "Title", widget: "string" }
-          - { name: "tagline", label: "Tagline", widget: "string" }
-          - { name: "image", label: "Banner Image", widget: "image" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Status", name: "status", widget: "string" }
+          - { label: "Zomato Link", name: "zomato", widget: "string" }
+
+      - label: "Timings"
+        name: "timings"
+        file: "settings.yml"
+        fields:
+          - label: "Opening Hours"
+            name: "opening_hours"
+            widget: "list"
+            fields:
+              - { label: "Day", name: "day", widget: "string" }
+              - { label: "Time", name: "time", widget: "string" }
 
   - name: "about"
-    label: "About Us"
+    label: "About Section"
     files:
-      - label: "About Content"
-        name: "about_content"
+      - label: "About Us"
+        name: "about"
         file: "about.yml"
         fields:
-          - { name: "description", label: "Description", widget: "text" }
-          - { name: "owner_image", label: "Owner Image", widget: "image" }
+          - { label: "Content", name: "content", widget: "markdown" }
+          - { label: "Owner Image", name: "owner_image", widget: "image" }
+          - { label: "Shop Image", name: "shop_image", widget: "image" }
 
   - name: "menu"
     label: "Menu Items"
@@ -36,9 +46,9 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "description", label: "Description", widget: "text" }
-      - { name: "image", label: "Image", widget: "image" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
 
   - name: "offers"
     label: "Offers"
@@ -46,8 +56,8 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: "offer_title", label: "Offer Title", widget: "string" }
-      - { name: "details", label: "Details", widget: "text" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Details", name: "details", widget: "markdown" }
 
   - name: "reviews"
     label: "Customer Reviews"
@@ -55,19 +65,6 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: "name", label: "Customer Name", widget: "string" }
-      - { name: "review", label: "Review", widget: "text" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Review", name: "review", widget: "text" }
 
-  - name: "settings"
-    label: "Site Settings"
-    files:
-      - label: "Main Settings"
-        name: "main_settings"
-        file: "settings.yml"
-        fields:
-          - { name: "zomato_link", label: "Zomato Order Link", widget: "string" }
-          - { name: "pm_video", label: "PM Modi Video URL", widget: "string" }
-          - { name: "footer_text", label: "Footer Text", widget: "string" }
-          - { name: "meta_title", label: "Meta Title", widget: "string" }
-          - { name: "meta_description", label: "Meta Description", widget: "string" }
-          - { name: "logo", label: "Logo Image", widget: "image" }
