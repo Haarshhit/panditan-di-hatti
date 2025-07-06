@@ -14,6 +14,7 @@ collections:
     fields:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
+      - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
 
   - name: "reviews"
@@ -25,13 +26,23 @@ collections:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Review", name: "review", widget: "text" }
 
+  - name: "offers"
+    label: "Offers"
+    folder: "content/offers"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Details", name: "details", widget: "text" }
+
   - name: "settings"
     label: "Site Settings"
     files:
       - file: "settings.yml"
         label: "General Settings"
-        name: "settings"
+        name: "general"
         fields:
           - { label: "Zomato URL", name: "zomato_url", widget: "string" }
           - { label: "Open Time (Minutes)", name: "open_time", widget: "number" }
           - { label: "Close Time (Minutes)", name: "close_time", widget: "number" }
+
