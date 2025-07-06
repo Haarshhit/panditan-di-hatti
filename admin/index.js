@@ -1,57 +1,50 @@
-// 📦 Load all CMS content into site
-// Requires: banner.yml, about.yml, settings.yml, video.yml, footer.yml
-// And folders: content/menu/, content/offers/, content/reviews/
-
-// Load YAML parser
-const loadYAML = async (url) => {
-  const res = await fetch(url);
+// CMS dynamic loader for Panditan Di Hatti
+async function loadSettings() {
+  const res = await fetch('settings.yml');
   const text = await res.text();
-  return jsyaml.load(text);
-};
-
-// 🏠 Banner Section
-loadYAML('/banner.yml').then(data => {
-  document.querySelector('#banner-title').innerText = data.title;
-  document.querySelector('#tagline').innerText = data.tagline;
-});
-
-// 👤 About Section
-loadYAML('/about.yml').then(data => {
-  document.querySelector('#about-description').innerText = data.description;
-  document.querySelector('#owner-image').src = data.owner_image;
-});
-
-// 🕒 Timings + Zomato + Meta
-loadYAML('/settings.yml').then(data => {
+  const data = jsyaml.load(text);
   const now = new Date();
-  const totalMins = now.getHours() * 60 + now.getMinutes();
-  const isOpen = totalMins >= data.open_time && totalMins <= data.close_time;
-  document.getElementById('openStatus').textContent = isOpen ? '✅ We’re Open Now' : '❌ We’re Closed Now';
+  const mins = now.getHours() * 60 + now.getMinutes();
+  const open = mins >= data.open_time && mins <= data.close_time;
+  document.getElementById('openStatus').textContent = open ? '✅ We’re Open Now' : '❌ We’re Closed';
+  const zomato = document.getElementById('zomatoBtn');
+  zomato.href = data.zomato_url;
+  zomato.className = open ? 'zomato open' : 'zomato closed';
+}
 
-  const btn = document.getElementById('zomatoBtn');
-  btn.classList.add(isOpen ? 'open' : 'closed');
-  btn.href = data.zomato_url;
+async function loadOffers() {
+  const res = await fetch('content/offers');
+  const html = await res.text();
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const links = Array.from(doc.querySelectorAll('a')).map(a => a.href);
+  let latest = links.pop(); // get the newest file
+  const file = await fetch(latest);
+  const raw = await file.text();
+  const content = marked.parse(raw.split('---')[2] || '');
+  document.getElementById('offers').innerHTML = content;
+}
 
-  document.title = data.meta_title;
-  document.querySelector('meta[name="description"]').setAttribute('content', data.meta_description);
-});
+async function loadCollection(folder, containerId) {
+  const res = await fetch(`content/${folder}`);
+  const html = await res.text();
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const links = Array.from(doc.querySelectorAll('a')).filter(a => a.href.endsWith('.md'));
+  const container = document.getElementById(containerId);
+  for (let link of links) {
+    const file = await fetch(link.href);
+    const raw = await file.text();
+    const content = raw.split('---')[2] || '';
+    const html = marked.parse(content);
+    const div = document.createElement('div');
+    div.className = folder === 'menu' ? 'menu-item' : 'review';
+    div.innerHTML = html;
+    container.appendChild(div);
+  }
+}
 
-// 🎥 Modi Video
-loadYAML('/video.yml').then(data => {
-  document.getElementById('modi-video-frame').src = data.youtube;
-});
-
-// 📜 Footer
-loadYAML('/footer.yml').then(data => {
-  document.getElementById('footer-text').innerText = data.footer_text;
-});
-
-// 🍽️ Menu Items
-fetch('/content/menu')
-  .then(res => res.text())
-  .then(html => console.log("Menu folder list fetch not supported on Netlify directly."));
-
-// Same for Offers & Reviews: must be statically embedded or use Netlify Functions
-// Alternative: Use Eleventy, Astro, or JS static site generators to compile
-
-// 💡 Tip: Replace static content with <span id="..."> and update with JS above
+loadSettings();
+loadOffers();
+loadCollection('menu', 'menu');
+loadCollection('reviews', 'reviews');
