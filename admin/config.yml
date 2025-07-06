@@ -1,21 +1,29 @@
-# ✅ Custom local login – No Netlify Identity used
 backend:
   name: test-repo
+local_backend: true
 
 media_folder: "images"
 public_folder: "/images"
 
-local_backend: true
-
 collections:
-  - name: "reviews"
-    label: "Customer Reviews"
-    folder: "content/reviews"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Review", name: "body", widget: "text" }
+  - name: "site"
+    label: "Site Settings"
+    files:
+      - label: "General Info"
+        name: "general"
+        file: "content/site-info.md"
+        fields:
+          - { label: "Shop Name", name: "title", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Zomato Order Link", name: "zomato_link", widget: "string" }
+          - { label: "PM Modi Video Link", name: "pm_video", widget: "string" }
+          - { label: "Open/Close Timings", name: "timings", widget: "string" }
+          - { label: "Banner Text", name: "banner", widget: "string" }
+          - { label: "Offer Text", name: "offers", widget: "string" }
+          - { label: "Footer Text", name: "footer", widget: "string" }
+          - { label: "Logo Image", name: "logo", widget: "image" }
+          - { label: "Owner Image", name: "owner", widget: "image" }
+          - { label: "Shop Image", name: "shop", widget: "image" }
 
   - name: "menu"
     label: "Menu Items"
@@ -26,6 +34,15 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
+
+  - name: "reviews"
+    label: "Customer Reviews"
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Review", name: "body", widget: "text" }
 
   - name: "about"
     label: "About Section"
