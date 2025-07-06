@@ -1,6 +1,7 @@
 backend:
-  name: git-gateway
-  branch: main
+  name: auth0
+  login: https://panditandihatti.us.auth0.com
+  repo: Harshu2004/panditan-di-hatti
 
 media_folder: "images"
 public_folder: "/images"
