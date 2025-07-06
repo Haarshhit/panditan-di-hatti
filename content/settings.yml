@@ -1,1 +1,24 @@
+banner_text: "Where Tradition Meets Taste — Since 1980"
+tagline: "Famous for Besan Barfi & Snacks"
+about_us: >
+  Panditan Di Hatti is a legendary sweets and snacks shop near PG Degree College in Hamirpur (Anu), Himachal Pradesh.
+owner_image: "images/OWNER.png"
+shop_image: "images/SHOP.avif"
+pm_modi_video: "https://youtu.be/QOZa-VSTyek?si=UAj5cmo9g4x3ipdn"
+offer_text: "🎉 Diwali Offer: 15% Off on Besan Barfi!"
+open_close:
+  - day: Monday
+    hours: 8:00 AM – 8:30 PM
+  - day: Tuesday
+    hours: 8:00 AM – 8:30 PM
+  - day: Wednesday
+    hours: 8:00 AM – 8:30 PM
+  - day: Thursday
+    hours: 8:00 AM – 8:30 PM
+  - day: Friday
+    hours: 8:00 AM – 8:30 PM
+  - day: Saturday
+    hours: 8:00 AM – 8:30 PM
+  - day: Sunday
+    hours: 8:00 AM – 8:30 PM
 
