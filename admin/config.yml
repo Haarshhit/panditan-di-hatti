@@ -1,17 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Login</title>
-  <script>
-    const pass = prompt("🔐 Enter password to access Admin:");
-    if (pass !== "3246") {
-      document.body.innerHTML = "<h2>❌ Access Denied</h2>";
-      throw new Error("Wrong password");
-    }
-  </script>
-</head>
-<body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-</body>
-</html>
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images" # where uploaded images go
+public_folder: "/images" # how they’re accessed in the site
+
+media_library:
+  name: uploadcare
+
+collections:
+  - name: "menu"
+    label: "Menu Items"
+    folder: "content/menu"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Sweet Name", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+
+  - name: "reviews"
+    label: "Customer Reviews"
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Reviewer Name", name: "name", widget: "string" }
+      - { label: "Review", name: "review", widget: "text" }
+
+  - name: "site_settings"
+    label: "Site Settings"
+    file: "content/settings.yml"
+    fields:
+      - { label: "Banner Text", name: "banner_text", widget: "string" }
+      - { label: "Tagline", name: "tagline", widget: "string" }
+      - { label: "About Us Text", name: "about_text", widget: "text" }
+      - { label: "Owner Image", name: "owner_image", widget: "image" }
+      - { label: "Shop Image", name: "shop_image", widget: "image" }
+      - { label: "Modi Video (YouTube Link)", name: "pm_modi_video", widget: "string" }
+      - { label: "Open/Close Times", name: "open_close", widget: "list", fields: [
+          { label: "Day", name: "day", widget: "string" },
+          { label: "Hours", name: "hours", widget: "string" }
+        ] }
+      - { label: "Offer / Sale Text", name: "offer", widget: "string" }
+
