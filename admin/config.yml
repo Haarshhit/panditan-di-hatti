@@ -1,44 +1,17 @@
-backend:
-  name: git-gateway
-  branch: main
-
-media_folder: "images"
-public_folder: "/images"
-
-collections:
-  - name: "site"
-    label: "Website Content"
-    files:
-      - file: "content/settings.yml"
-        label: "Site Settings"
-        name: "settings"
-        fields:
-          - { label: "Logo", name: "logo", widget: "image" }
-          - { label: "Title", name: "shop_title", widget: "string" }
-          - { label: "Tagline", name: "shop_tagline", widget: "string" }
-          - { label: "About Us", name: "about_content", widget: "text" }
-          - { label: "Owner Image", name: "owner_image", widget: "image" }
-          - { label: "Shop Image", name: "shop_image", widget: "image" }
-          - { label: "Open/Close Toggle", name: "is_open", widget: "boolean", default: true }
-          - { label: "Zomato Link", name: "zomato_link", widget: "string" }
-          - { label: "YouTube Video URL", name: "pm_modi_video", widget: "string" }
-          - { label: "Offer Text", name: "offers", widget: "string" }
-
-  - name: "menu"
-    label: "Menu Items"
-    folder: "content/menu"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image" }
-
-  - name: "reviews"
-    label: "Customer Reviews"
-    folder: "content/reviews"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Reviewer Name", name: "name", widget: "string" }
-      - { label: "Review", name: "review", widget: "text" }
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <script>
+    const pass = prompt("🔐 Enter password to access Admin:");
+    if (pass !== "3246") {
+      document.body.innerHTML = "<h2>❌ Access Denied</h2>";
+      throw new Error("Wrong password");
+    }
+  </script>
+</head>
+<body>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+</body>
+</html>
