@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
-  branch: main
+  name: auth0
+  domain: pandit-di-hatti.us.auth0.com
+  client_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2
+  login: https://pandit-di-hatti.us.auth0.com
 
 media_folder: "images"         # Folder where uploaded images go
 public_folder: "/images"       # Path used in the frontend HTML
