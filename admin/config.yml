@@ -1,1 +1,36 @@
+backend:
+  name: github
+  repo: Haarshhit/panditan-di-hatti
+  branch: main
 
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "menu"
+    label: "Menu Items"
+    folder: "content/menu"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
+
+  - name: "reviews"
+    label: "Customer Reviews"
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Review", name: "review", widget: "text" }
+
+  - name: "offers"
+    label: "Offers"
+    folder: "content/offers"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Details", name: "details", widget: "markdown" }
