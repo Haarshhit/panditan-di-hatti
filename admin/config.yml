@@ -8,29 +8,11 @@ public_folder: "/images"
 
 collections:
   - name: "menu"
-    label: "Menu Items"
+    label: "Menu"
     folder: "content/menu"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
-
-  - name: "reviews"
-    label: "Customer Reviews"
-    folder: "content/reviews"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Review", name: "review", widget: "text" }
-
-  - name: "offers"
-    label: "Offers"
-    folder: "content/offers"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Details", name: "details", widget: "markdown" }
