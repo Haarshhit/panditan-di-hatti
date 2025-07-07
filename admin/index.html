@@ -3,18 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <title>Panditan Di Hatti Admin</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Secure admin portal for Panditan Di Hatti" />
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f9f9f9;
+        color: #333;
+      }
+    </style>
   </head>
   <body>
-    <!-- ✅ Load core Netlify CMS -->
-    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
-
-    <!-- ✅ Load the Auth0 backend plugin -->
-    <script src="https://unpkg.com/netlify-cms-auth0@^1.0.0/dist/netlify-cms-auth0.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+    <script src="https://unpkg.com/netlify-cms-auth0@^1.0.0/dist/netlify-cms-auth0.min.js"></script>
     <script>
-      NetlifyCmsApp.init({
-        config: "/admin/config.yml"
+      NetlifyCmsAuth0.init({
+        domain: "pandit-di-hatti.us.auth0.com",
+        clientID: "9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2",
+        redirectUri: "https://panditandihatti.netlify.app/admin/",
       });
     </script>
   </body>
