@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <title>Panditan Di Hatti Admin</title>
-    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
   </head>
   <body>
-    <!-- ✅ Mounting point for CMS -->
-    <div id="nc-root"></div>
+    <script src="https://cdn.jsdelivr.net/npm/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+    <script src="https://unpkg.com/netlify-cms-auth0@^1.0.0/dist/netlify-cms-auth0.min.js"></script>
+    <script>
+      NetlifyCmsAuth0.init({
+        domain: "pandit-di-hatti.us.auth0.com",
+        clientID: "9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2",
+        redirectUri: "https://panditandihatti.onrender.com/admin/"
+      });
+    </script>
   </body>
 </html>
