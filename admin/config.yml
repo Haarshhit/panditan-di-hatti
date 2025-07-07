@@ -1,71 +1,8 @@
 backend:
-  name: auth0
-  login: https://pandit-di-hatti.us.auth0.com
-  branch: main   # or use 'master' if that's your branch name
+  name: git-gateway
+  branch: main
 
 media_folder: "images"
 public_folder: "/images"
 
-collections:
-  - name: "settings"
-    label: "Site Settings"
-    files:
-      - label: "Banner"
-        name: "banner"
-        file: "banner.yml"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Tagline", name: "tagline", widget: "string" }
-          - { label: "Status", name: "status", widget: "string" }
-          - { label: "Zomato Link", name: "zomato", widget: "string" }
-
-      - label: "Timings"
-        name: "timings"
-        file: "settings.yml"
-        fields:
-          - label: "Opening Hours"
-            name: "opening_hours"
-            widget: "list"
-            fields:
-              - { label: "Day", name: "day", widget: "string" }
-              - { label: "Time", name: "time", widget: "string" }
-
-  - name: "about"
-    label: "About Section"
-    files:
-      - label: "About Us"
-        name: "about"
-        file: "about.yml"
-        fields:
-          - { label: "Content", name: "content", widget: "markdown" }
-          - { label: "Owner Image", name: "owner_image", widget: "image" }
-          - { label: "Shop Image", name: "shop_image", widget: "image" }
-
-  - name: "menu"
-    label: "Menu Items"
-    folder: "content/menu"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image" }
-
-  - name: "offers"
-    label: "Offers"
-    folder: "content/offers"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Details", name: "details", widget: "markdown" }
-
-  - name: "reviews"
-    label: "Customer Reviews"
-    folder: "content/reviews"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Review", name: "review", widget: "text" }
-
+# collections ...
