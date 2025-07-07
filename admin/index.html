@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Panditan Di Hatti Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Secure admin portal for Panditan Di Hatti" />
+    <meta name="description" content="Admin panel for Panditan Di Hatti" />
     <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
     <script src="https://unpkg.com/netlify-cms-auth0@^1.0.0/dist/netlify-cms-auth0.min.js"></script>
   </head>
@@ -20,12 +20,11 @@
         config: {
           backend: {
             name: "auth0",
-            login: "https://pandit-di-hatti.us.auth0.com",
+            login: "https://pandit-di-hatti.us.auth0.com"
           },
           media_folder: "images",
           public_folder: "/images",
-          media_library: { name: "uploadcare" },  // or simple media_library: { name: "default" }
-
+          media_library: { name: "uploadcare" },
           collections: [
             {
               name: "settings",
