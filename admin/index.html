@@ -15,3 +15,26 @@
     </script>
   </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- Load Netlify CMS core -->
+    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+
+    <!-- ✅ Load the Auth0 backend plugin manually -->
+    <script src="https://unpkg.com/netlify-cms-auth0@^1.0.0/dist/netlify-cms-auth0.js"></script>
+
+    <script>
+      // Start Netlify CMS with your config
+      NetlifyCmsApp.init({
+        config: "/admin/config.yml"
+      });
+    </script>
+  </body>
+</html>
+
