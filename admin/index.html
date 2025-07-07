@@ -1,51 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Panditan Di Hatti Admin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Admin Portal for Panditan Di Hatti" />
-  <link rel="icon" href="/images/LOGO.png" />
-  <style>
-    body {
-      background: #fff0e6;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    h1 {
-      font-size: 2rem;
-      color: #e65100;
-      margin-bottom: 1rem;
-    }
-    #cms {
-      width: 100%;
-      max-width: 800px;
-      height: 90vh;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body>
-  <div id="cms"></div>
-
-  <!-- CMS Core -->
-  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
-
-  <!-- Auth0 Backend Plugin -->
-  <script src="https://unpkg.com/netlify-cms-auth0@1.0.3/dist/auth0.js"></script>
-
-  <!-- CMS Init -->
-  <script>
-    window.CMS_MANUAL_INIT = true;
-    NetlifyCmsAuth0.init({
-      configUrl: '/admin/config.yml'
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel | Panditan Di Hatti</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+    <script src="https://unpkg.com/netlify-cms-auth0@^1.0.0/dist/netlify-cms-auth0.js"></script>
+    <script>
+      NetlifyCmsApp.init({
+        config: "/admin/config.yml"
+      });
+    </script>
+  </body>
 </html>
