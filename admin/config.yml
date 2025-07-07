@@ -1,6 +1,6 @@
 backend:
-  name: github
-  repo: harshuchauhan/panditan-di-hatti
+  name: auth0
+  login: https://pandit-di-hatti.us.auth0.com
   branch: main   # or use 'master' if that's your branch name
 
 media_folder: "images"
