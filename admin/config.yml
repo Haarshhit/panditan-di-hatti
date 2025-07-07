@@ -1,34 +1,13 @@
 backend:
   name: auth0
-  login: https://pandit-di-hatti.us.auth0.com
   client_id: 9T1YDhGiPSGE1XqQmkPHei7IzyFeReN2
+  login: https://pandit-di-hatti.us.auth0.com
   redirect_uri: https://panditandihatti.netlify.app/admin/
 
 media_folder: "images"
 public_folder: "/images"
 
-collections:<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Admin | Panditan Di Hatti</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <!-- Load Netlify CMS -->
-    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
-
-    <!-- ✅ Load Auth0 backend plugin -->
-    <script src="https://unpkg.com/netlify-cms-auth0@1.0.0/dist/netlify-cms-auth0.min.js"></script>
-
-    <script>
-      NetlifyCmsApp.init({
-        config: "/admin/config.yml"
-      });
-    </script>
-  </body>
-</html>
-
+collections:
   - name: "settings"
     label: "Site Settings"
     files:
