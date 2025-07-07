@@ -1,18 +1,24 @@
 backend:
   name: github
-  repo: Haarshhit/panditan-di-hatti
-  branch: main
+  repo: Haarshhit/panditan-di-hatti  # Your GitHub repository
+  branch: main                       # The branch to publish to
 
-media_folder: "images"
-public_folder: "/images"
+media_folder: "images"               # Folder for uploaded media files
+public_folder: "/images"              # Public URL for media files
 
 collections:
-  - name: "menu"
-    label: "Menu"
-    folder: "content/menu"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Price", name: "price", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
+  - name: "menu"                     # Collection name
+    label: "Menu"                    # Display label for the collection
+    folder: "content/menu"           # Folder where menu items are stored
+    create: true                     # Allow creating new entries
+    slug: "{{slug}}"                 # Slug format for entries
+    fields:                          # Fields for each menu item
+      - label: "Title"               # Field label
+        name: "title"                # Field name
+        widget: "string"             # Field type
+      - label: "Price"               # Field label
+        name: "price"                # Field name
+        widget: "string"             # Field type
+      - label: "Image"               # Field label
+        name: "image"                # Field name
+        widget: "image"              # Field type
